@@ -29,7 +29,7 @@ public class OxaHomePage extends BasePage {
 
     public void goToTabPortfolio(){
         driver.findElement(tabPortfolio).click();
-        log.info("Click 'tabPortfolio'");
+        log.info("Click 'tabAboutAs'");
     }
 
 
