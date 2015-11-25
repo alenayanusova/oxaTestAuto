@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 /**
  * Created by yanusovaaa on 11/25/2015.
  */
+
 public class BasePage {
     protected WebDriver driver;
     protected Logger log = Logger.getLogger(this.getClass().getName());

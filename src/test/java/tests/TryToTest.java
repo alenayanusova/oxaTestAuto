@@ -1,9 +1,7 @@
 package tests;
 
 import base.BaseTest;
-import org.junit.Assert;
 import org.junit.Test;
-import org.openqa.selenium.By;
 import pages.OxaHomePage;
 
 /**
