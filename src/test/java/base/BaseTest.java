@@ -22,6 +22,7 @@ public class BaseTest {
         log.info("FirefoxDriver initialized");
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         log.info("Set timeout fro 3 seconds");
+        driver.get("http://redesign-qa.oxagile.com/");
     }
 
     @After
