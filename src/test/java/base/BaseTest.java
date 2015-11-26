@@ -15,6 +15,8 @@ import java.util.concurrent.TimeUnit;
 public class BaseTest {
     protected WebDriver driver;
     protected Logger log = Logger.getLogger(this.getClass().getName());
+    protected final String BASE_URL = "http://redesign-qa.oxagile.com/";
+
 
     @Before
     public void setUp() {
@@ -22,7 +24,8 @@ public class BaseTest {
         log.info("FirefoxDriver initialized");
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         log.info("Set timeout fro 3 seconds");
-        driver.get("http://redesign-qa.oxagile.com/");
+        driver.get(BASE_URL);
+
     }
 
     @After
@@ -30,4 +33,6 @@ public class BaseTest {
         driver.quit();
         log.info("Driver shut down");
     }
+
 }
+

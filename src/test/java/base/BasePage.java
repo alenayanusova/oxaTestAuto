@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
+
 /**
  * Created by yanusovaaa on 11/25/2015.
  */
@@ -16,6 +17,7 @@ public class BasePage {
     public BasePage(WebDriver driver) {
         this.driver = driver;
     }
+
 
     public boolean isElementPresent(By by) {
         try {
