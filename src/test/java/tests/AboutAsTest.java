@@ -2,6 +2,7 @@ package tests;
 
 import base.BaseTest;
 import org.junit.Test;
+import pages.AboutAsPage;
 import pages.OxaHomePage;
 
 /**
@@ -15,8 +16,16 @@ public class AboutAsTest extends BaseTest {
         log.info("Log step 1: Go to About As tab");
         OxaHomePage oxaHomePage = new OxaHomePage(driver);
         oxaHomePage.goToTabAboutAs();
-        oxaHomePage.goToTabPortfolio();
-        oxaHomePage.goToTabServices();
+    }
 
+    @Test
+    public void test2(){
+        log.info("Log step 1: Go to About As tab");
+        OxaHomePage oxaHomePage = new OxaHomePage(driver);
+        oxaHomePage.goToTabAboutAs();
+
+        log.info("Log step 2: Go to News");
+        AboutAsPage aboutAsPage = new AboutAsPage(driver);
+        aboutAsPage.goToNews();
     }
 }

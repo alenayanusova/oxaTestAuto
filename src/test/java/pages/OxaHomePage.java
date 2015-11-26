@@ -15,7 +15,6 @@ public class OxaHomePage extends BasePage {
     public OxaHomePage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
-
     }
 
     final String ABOUT_AS_TAB = "//*[@id='top-menu-107']";
