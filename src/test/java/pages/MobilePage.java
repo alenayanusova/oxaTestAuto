@@ -8,21 +8,23 @@ import org.openqa.selenium.support.PageFactory;
 
 /**
  * Created by pushkarevamn on 11/27/2015.
+ *
+ * @author pushkarevamn
  */
 public class MobilePage extends BasePage {
     public MobilePage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
-    final String HEADER_XPATH = "//div[@class='header']";
-    @FindBy(xpath = HEADER_XPATH)
-    private WebElement header;
+    final String BREADCRUMBS_XPATH = "//div[@class='breadcrumbs']";
+    @FindBy(xpath = BREADCRUMBS_XPATH)
+    private WebElement breadcrumbs;
 
 
-    public  final static  String HEADER_TEXT = "Portfolio";
+    public  final static  String BREADCRUMBS_TEXT = "Home / Portfolio / Mobile";
 
-    public String getHeaderText(){
-        waitForElement(HEADER_XPATH);
-        return header.getText();
+    public String getBreadcrumbsText(){
+        waitForElement(BREADCRUMBS_XPATH);
+        return breadcrumbs.getText();
     }
 }

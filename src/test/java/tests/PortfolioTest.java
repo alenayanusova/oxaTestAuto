@@ -8,6 +8,8 @@ import static junit.framework.Assert.assertEquals;
 
 /**
  * Created by pushkarevamn on 11/27/2015.
+ *
+ * @author pushkarevamn
  */
 public class PortfolioTest extends BaseTest {
 
@@ -21,7 +23,7 @@ public class PortfolioTest extends BaseTest {
         PortfolioPage portfolioPage = new PortfolioPage(driver);
         MobilePage mobilePage = new MobilePage(driver);
         portfolioPage.goToMobileDevelopment();
-        assertEquals(mobilePage.getHeaderText(), MobilePage.HEADER_TEXT);
+        assertEquals(mobilePage.getBreadcrumbsText(), MobilePage.BREADCRUMBS_TEXT);
 
     }
     @Test
@@ -34,7 +36,7 @@ public class PortfolioTest extends BaseTest {
         PortfolioPage portfolioPage = new PortfolioPage(driver);
         NetPage netPage = new NetPage(driver);
         portfolioPage.goToNetDevelopment();
-        assertEquals(netPage.getHeaderText(), NetPage.HEADER_TEXT);
+        assertEquals(netPage.getBreadcrumbsText(), NetPage.BREADCRUMBS_TEXT);
 
     }
     @Test
@@ -47,7 +49,7 @@ public class PortfolioTest extends BaseTest {
         PortfolioPage portfolioPage = new PortfolioPage(driver);
         JavaPage javaPage = new JavaPage(driver);
         portfolioPage.goToJavaDevelopment();
-        assertEquals(javaPage.getHeaderText(), JavaPage.HEADER_TEXT);
+        assertEquals(javaPage.getBreadcrumbsText(), JavaPage.BREADCRUMBS_TEXT);
 
     }
     @Test
@@ -60,7 +62,7 @@ public class PortfolioTest extends BaseTest {
         PortfolioPage portfolioPage = new PortfolioPage(driver);
         PhpPage phpPage = new PhpPage(driver);
         portfolioPage.goToPhpDevelopment();
-        assertEquals(phpPage.getHeaderText(), PhpPage.HEADER_TEXT);
+        assertEquals(phpPage.getBreadcrumbsText(), PhpPage.BREADCRUMBS_TEXT);
 
     }
 }
