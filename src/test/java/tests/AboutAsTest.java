@@ -28,4 +28,5 @@ public class AboutAsTest extends BaseTest {
         AboutAsPage aboutAsPage = new AboutAsPage(driver);
         aboutAsPage.goToNews();
     }
+
 }

@@ -43,7 +43,7 @@ public class OxaHomePage extends BasePage {
 
     public void goToTabPortfolio(){
         portfolioTab.click();
-        log.info("Click 'tabAboutAs'");
+        log.info("Click 'tabPortfolio'");
     }
 
 

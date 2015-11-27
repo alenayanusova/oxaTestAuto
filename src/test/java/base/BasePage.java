@@ -27,4 +27,18 @@ public class BasePage {
             return false;
         }
     }
+
+    public void waitForElement(String xpath){
+        for (int second = 0;; second++) {
+            if (second >= 60)
+                throw new NoSuchElementException("timeout");
+            if (isElementPresent(By.xpath(xpath)))
+                    break;
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }
