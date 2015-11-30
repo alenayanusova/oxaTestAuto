@@ -79,7 +79,7 @@ public class ServiciesPage extends BasePage {
     }
 
     public void goSupportAndMaintenanceServices(){
-        log.warn("Navigate to Technical Support & Maintenance page");
+        log.warn("Navigate to Technical Support & Maintenance page.");
         waitForElement(SUPPORT_AND_MAINTENANCE_LINK);
         supportAndMaintenanceLink.click();
         driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);

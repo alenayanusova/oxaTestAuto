@@ -17,7 +17,7 @@ public class ServiciesTest extends BaseTest {
 
 
     @Test
-    public void test1(){
+    public void test(){
         OxaHomePage oxaHomePage = new OxaHomePage(driver);
         oxaHomePage.goToTabServices();
         ServiciesPage serviciesPage = new ServiciesPage(driver);
