@@ -33,7 +33,7 @@ public class BasePage {
             if (second >= 60)
                 throw new NoSuchElementException("timeout");
             if (isElementPresent(By.xpath(xpath)))
-                    break;
+                break;
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {

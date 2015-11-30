@@ -16,6 +16,7 @@ public class AboutAsTest extends BaseTest {
         log.info("Log step 1: Go to About As tab");
         OxaHomePage oxaHomePage = new OxaHomePage(driver);
         oxaHomePage.goToTabAboutAs();
+
     }
 
     @Test

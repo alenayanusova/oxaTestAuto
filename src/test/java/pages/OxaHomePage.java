@@ -32,16 +32,19 @@ public class OxaHomePage extends BasePage {
 
 
     public void goToTabAboutAs(){
+        waitForElement(ABOUT_AS_TAB);
         aboutAsTab.click();
         log.info("Click 'tabAboutAs'");
     }
 
     public void goToTabServices(){
+        waitForElement(SERVICES_TAB);
         servicesTab.click();
         log.info("Click 'tabServices'");
     }
 
     public void goToTabPortfolio(){
+        waitForElement(PORTFOLIO_TAB);
         portfolioTab.click();
         log.info("Click 'tabPortfolio'");
     }

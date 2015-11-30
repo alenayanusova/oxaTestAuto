@@ -23,8 +23,9 @@ public class AboutAsPage extends BasePage {
     private WebElement newsLink;
 
     public void goToNews(){
+        waitForElement(NEWS_LINK);
         newsLink.click();
-
+        log.info("Click 'newsLink'");
     }
 
 
