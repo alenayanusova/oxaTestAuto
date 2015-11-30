@@ -22,8 +22,8 @@ public class BaseTest {
     public void setUp() {
         driver = new FirefoxDriver();
         log.info("FirefoxDriver initialized");
-        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-        log.info("Set timeout fro 3 seconds");
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        log.info("Set timeout fro 10 seconds");
         driver.get(BASE_URL);
 
     }

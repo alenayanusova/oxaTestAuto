@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.ArrayList;
+
 /**
  * Created by yanusovaaa on 11/26/2015.
  */
@@ -32,6 +34,10 @@ public class AboutAsPage extends BasePage {
     @FindBy(xpath = CONTACT_US_LINK)
     private WebElement contactUsLink;
 
+    final String QA_LINK = "//a[contains(text(),'quality assurance')]";
+    @FindBy(xpath = QA_LINK)
+    private WebElement qaLink;
+
     public String getHeaderText(){
         waitForElement(ABOUT_US_HEADER);
         return aboutUsHeader.getText();
@@ -47,6 +53,16 @@ public class AboutAsPage extends BasePage {
         waitForElement(CONTACT_US_LINK);
         contactUsLink.click();
         log.info("Click 'contactUsLink'");
+    }
+
+    public void goToQAPage(){
+        waitForElement(QA_LINK);
+        qaLink.click();
+        log.info("Click 'qaLink'");
+        ArrayList<String> windowHandles = new ArrayList<String>(driver.getWindowHandles());
+        log.info("get window handle'");
+        driver.switchTo().window(windowHandles.get(1));
+        log.info("switch window");
     }
 
 
