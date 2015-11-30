@@ -1,9 +1,10 @@
 package base;
 
 import org.apache.log4j.Logger;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
+
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -18,21 +19,32 @@ public class BasePage {
         this.driver = driver;
     }
 
-
-    public boolean isElementPresent(By by) {
+    public boolean isElementPresent(String by) {
         try {
-            driver.findElement(by);
-            return true;
-        } catch (NoSuchElementException e) {
-            return false;
+            log.info("Find element with locator: " + by);
+            driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+            List<WebElement> list = driver.findElements(By.xpath(by));
+            if (list.size() == 0) {
+                log.info("Can't find an element with locator: " + by);
+                return false;
+            } else {
+                log.info("Element with locator: " + by + " was found");
+                return true;
+            }
+        }catch(UnhandledAlertException e){
+            alertHandler();
+            return isElementPresent(by);
+        }
+        finally {
+            driver.manage().timeouts().implicitlyWait(PAUSE_LENGTH.AJAX.value(), TimeUnit.SECONDS);
         }
     }
 
-    public void waitForElement(String xpath){
-        for (int second = 0;; second++) {
+    public void waitForElement(String xpath) {
+        for (int second = 0; ; second++) {
             if (second >= 60)
                 throw new NoSuchElementException("timeout");
-            if (isElementPresent(By.xpath(xpath)))
+            if (isElementPresent(xpath))
                 break;
             try {
                 Thread.sleep(1000);
@@ -41,4 +53,24 @@ public class BasePage {
             }
         }
     }
+
+
+    public void alertHandler() {
+            if (isAlertDisplayed()) {
+                Alert alert = driver.switchTo().alert();
+                log.warn("Alert present! " + alert.getText());
+                alert.accept();
+            }
+        }
+
+    private boolean isAlertDisplayed() {
+        try {
+            driver.switchTo().alert();
+            return true;
+        } catch (NoAlertPresentException Ex) {
+            return false;
+        }
+    }
+
+
 }
