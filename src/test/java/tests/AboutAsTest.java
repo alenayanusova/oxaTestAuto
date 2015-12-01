@@ -86,4 +86,15 @@ public class AboutAsTest extends BaseTest {
         Assert.assertEquals("page isn't contact us", ContactUsPage.CONTACT_US_HEADER_TEXT, contactUsPage.getHeaderText());
     }
 
+    @Test
+    public void test5(){
+        log.info("Log step 1: Try to search");
+        OxaHomePage oxaHomePage = new OxaHomePage(driver);
+        oxaHomePage.tryToSearch("java");
+
+        log.info("Log step 2: Check that page is Search");
+        SearchResultsPage searchResultsPage = new SearchResultsPage(driver);
+        Assert.assertEquals("page isn't search results", searchResultsPage.getExpectedResult("java"), searchResultsPage.getHeaderText());
+    }
+
 }
