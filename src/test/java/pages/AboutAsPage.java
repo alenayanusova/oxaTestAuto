@@ -40,6 +40,7 @@ public class AboutAsPage extends BasePage {
 
     public String getHeaderText(){
         waitForElement(ABOUT_US_HEADER);
+        log.info("get 'ABOUT_US_HEADER'");
         return aboutUsHeader.getText();
     }
 
