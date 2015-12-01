@@ -8,6 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 
 /**
  * Created by yanusovaaa on 11/30/2015.
+ * @author yanusovaaa
  */
 
 public class QAPage  extends BasePage{

@@ -8,6 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 
 /**
  * Created by yanusovaaa on 11/25/2015.
+ * @author yanusovaaa
  */
 
 public class OxaHomePage extends BasePage {

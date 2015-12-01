@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 /**
  * Created by yanusovaaa on 11/26/2015.
+ * @author yanusovaaa
  */
 
 public class AboutAsPage extends BasePage {

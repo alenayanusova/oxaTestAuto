@@ -9,6 +9,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Created by yanusovaaa on 11/25/2015.
+ * @author yanusovaaa
  */
 
 public class BasePage {
