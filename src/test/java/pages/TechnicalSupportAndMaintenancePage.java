@@ -8,7 +8,9 @@ import org.openqa.selenium.support.PageFactory;
 
 /**
  * Created by yanusovaaa on 12/2/2015.
+ * @author yanusovaaa
  */
+
 public class TechnicalSupportAndMaintenancePage extends BasePage {
 
     public TechnicalSupportAndMaintenancePage(WebDriver driver) {
