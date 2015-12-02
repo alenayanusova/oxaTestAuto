@@ -73,8 +73,8 @@ public class AboutUsTest extends BaseTest {
         aboutUsPage.goToQAPage();
 
         log.info("Log step 3: Go to Contact Us");
-        QAPage qaPage = new QAPage(driver);
-        qaPage.goToContactUs();
+        SoftwareQualityAssurance softwareQualityAssurance = new SoftwareQualityAssurance(driver);
+        softwareQualityAssurance.goToContactUs();
 
         log.info("Log step 4: Check that page is Contact Us");
         ContactUsPage contactUsPage = new ContactUsPage(driver);
@@ -105,6 +105,36 @@ public class AboutUsTest extends BaseTest {
         log.info("Log step 3: Check that page is Contact Us");
         ContactUsPage contactUsPage = new ContactUsPage(driver);
         Assert.assertEquals("page isn't contact us", ContactUsPage.CONTACT_US_HEADER_TEXT, contactUsPage.getHeaderText());
+    }
+
+    @Test
+    public void test7(){
+        log.info("Log step 1: Go to About As tab");
+        OxaHomePage oxaHomePage = new OxaHomePage(driver);
+        oxaHomePage.goToTabAboutAs();
+
+        log.info("Log step 2: Go to Customer software services page");
+        AboutUsPage aboutUsPage = new AboutUsPage(driver);
+        aboutUsPage.goToCustomerSoftwareServices();
+
+        log.info("Log step 3: Check that page is Customer software services page");
+        CustomSoftwareDevelopmentServices customSoftwareDevelopmentServices = new CustomSoftwareDevelopmentServices(driver);
+        Assert.assertEquals("page isn't customer software services", CustomSoftwareDevelopmentServices.CUSTOMER_SOFTWARE_SERVICES_HEADER_TEXT, customSoftwareDevelopmentServices.getHeaderText());
+    }
+
+    @Test
+    public void test8(){
+        log.info("Log step 1: Go to About As tab");
+        OxaHomePage oxaHomePage = new OxaHomePage(driver);
+        oxaHomePage.goToTabAboutAs();
+
+        log.info("Log step 2: Go to Web development services page");
+        AboutUsPage aboutUsPage = new AboutUsPage(driver);
+        aboutUsPage.goToWebDevelopmentServices();
+
+        log.info("Log step 3: Check that page is Web development services page");
+        WebDevelopmentServices webDevelopmentServices = new WebDevelopmentServices(driver);
+        Assert.assertEquals("page isn't web development services", WebDevelopmentServices.WEB_DEVELOPMENT_SERVICED_HEADER_TEXT, webDevelopmentServices.getHeaderText());
     }
 
 }

@@ -34,6 +34,14 @@ public class AboutUsPage extends BasePage {
     @FindBy(xpath = QA_LINK)
     private WebElement qaLink;
 
+    final String CUSTOMER_SOFTWARE_SERVICES_LINK = "//a[contains(text(),'custom software services')]";
+    @FindBy(xpath = CUSTOMER_SOFTWARE_SERVICES_LINK)
+    private WebElement customerSoftwareServicesLink;
+
+    final String WEB_DEVELOPMENT_SERVICED_LINK = "//a[contains(text(),'web')]";
+    @FindBy(xpath = WEB_DEVELOPMENT_SERVICED_LINK)
+    private WebElement webDevelopmentServices;
+
     public String getHeaderText(){
         waitForElement(ABOUT_US_HEADER);
         log.info("get 'ABOUT_US_HEADER'");
@@ -56,7 +64,23 @@ public class AboutUsPage extends BasePage {
         log.info("switch window");
     }
 
+    public void goToCustomerSoftwareServices(){
+        waitForElement(CUSTOMER_SOFTWARE_SERVICES_LINK);
+        customerSoftwareServicesLink.click();
+        log.info("Click 'customerSoftwareServicesLink'");
+        ArrayList<String> windowHandles = new ArrayList<String>(driver.getWindowHandles());
+        log.info("get window handle'");
+        driver.switchTo().window(windowHandles.get(1));
+        log.info("switch window");
+    }
 
-
-
+    public void goToWebDevelopmentServices(){
+        waitForElement(WEB_DEVELOPMENT_SERVICED_LINK);
+        webDevelopmentServices.click();
+        log.info("Click 'webDevelopmentServices'");
+        ArrayList<String> windowHandles = new ArrayList<String>(driver.getWindowHandles());
+        log.info("get window handle'");
+        driver.switchTo().window(windowHandles.get(1));
+        log.info("switch window");
+    }
 }

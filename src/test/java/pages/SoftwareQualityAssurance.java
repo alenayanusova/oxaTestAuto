@@ -11,9 +11,9 @@ import org.openqa.selenium.support.PageFactory;
  * @author yanusovaaa
  */
 
-public class QAPage  extends BasePage{
+public class SoftwareQualityAssurance extends BasePage{
 
-    public QAPage(WebDriver driver) {
+    public SoftwareQualityAssurance(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
