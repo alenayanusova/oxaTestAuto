@@ -8,6 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 
 /**
  * Created by yanusovaaa on 12/1/2015.
+ * @author yanusovaaa
  */
 public class SearchResultsPage extends BasePage {
 
