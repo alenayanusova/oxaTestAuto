@@ -46,6 +46,10 @@ public class AboutUsPage extends BasePage {
     @FindBy(xpath = MOBILE_DEVELOPMENT_SERVICED_LINK)
     private WebElement mobileDevelopmentServices;
 
+    final String TECHNICAL_SUPPORT_LINK = "//a[contains(text(),'maintenance and support')]";
+    @FindBy(xpath = TECHNICAL_SUPPORT_LINK)
+    private WebElement technicalSupport;
+
     public String getHeaderText(){
         waitForElement(ABOUT_US_HEADER);
         log.info("get 'ABOUT_US_HEADER'");
@@ -92,6 +96,16 @@ public class AboutUsPage extends BasePage {
         waitForElement(MOBILE_DEVELOPMENT_SERVICED_LINK);
         mobileDevelopmentServices.click();
         log.info("Click 'mobileDevelopmentServices'");
+        ArrayList<String> windowHandles = new ArrayList<String>(driver.getWindowHandles());
+        log.info("get window handle'");
+        driver.switchTo().window(windowHandles.get(1));
+        log.info("switch window");
+    }
+
+    public void goToTechnicalSupport(){
+        waitForElement(TECHNICAL_SUPPORT_LINK);
+        technicalSupport.click();
+        log.info("Click 'technicalSupport'");
         ArrayList<String> windowHandles = new ArrayList<String>(driver.getWindowHandles());
         log.info("get window handle'");
         driver.switchTo().window(windowHandles.get(1));
