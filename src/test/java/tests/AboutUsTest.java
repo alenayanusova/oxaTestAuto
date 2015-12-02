@@ -40,18 +40,15 @@ public class AboutUsTest extends BaseTest {
 
     @Test
     public void test3(){
-        log.info("Log step 1: Go to About As tab");
+        log.info("Log step 1: Go to Contact Us for About Us menu");
         OxaHomePage oxaHomePage = new OxaHomePage(driver);
-        oxaHomePage.goToTabAboutAs();
-
-        log.info("Log step 2: Go to Contact Us");
         oxaHomePage.goToContactUsFromAboutUsMenu();
 
-        log.info("Log step 3: Check that page is Contact Us");
+        log.info("Log step 2: Check that page is Contact Us");
         ContactUsPage contactUsPage = new ContactUsPage(driver);
         Assert.assertEquals("page isn't contact us", ContactUsPage.CONTACT_US_HEADER_TEXT, contactUsPage.getHeaderText());
 
-        log.info("Log step 4: Check for required NAME field");
+        log.info("Log step 3: Check for required NAME field");
         contactUsPage.sendRequest();
         Assert.assertEquals("validation message for name field wasn't found", ContactUsPage.NAME_VALIDATION_TEXT, contactUsPage.getNameValidationText());
 
@@ -59,7 +56,7 @@ public class AboutUsTest extends BaseTest {
         contactUsPage.sendRequest("name");
         Assert.assertEquals("validation message for email field wasn't found", ContactUsPage.EMAIL_VALIDATION_TEXT, contactUsPage.getEmailValidationText());
 
-        log.info("log step 4: Check for required Message textarea");
+        log.info("log step 5: Check for required Message textarea");
         contactUsPage.sendRequest("name", "alena.yanusova@oxagile.com");
         Assert.assertEquals("validation message for message textarea wasn't found", ContactUsPage.MESSAGE_VALIDATION_TEXT, contactUsPage.getMessageValidationText());
 
@@ -93,6 +90,21 @@ public class AboutUsTest extends BaseTest {
         log.info("Log step 2: Check that page is Search");
         SearchResultsPage searchResultsPage = new SearchResultsPage(driver);
         Assert.assertEquals("page isn't search results", searchResultsPage.getExpectedResult("java"), searchResultsPage.getHeaderText());
+    }
+
+    @Test
+    public void test6(){
+        log.info("Log step 1: Go to About As tab");
+        OxaHomePage oxaHomePage = new OxaHomePage(driver);
+        oxaHomePage.goToTabAboutAs();
+
+        log.info("Log step 2: Go to Contact Us from About Us page");
+        AboutUsPage aboutUsPage = new AboutUsPage(driver);
+        aboutUsPage.goToContactUsFromAboutUsPage();
+
+        log.info("Log step 3: Check that page is Contact Us");
+        ContactUsPage contactUsPage = new ContactUsPage(driver);
+        Assert.assertEquals("page isn't contact us", ContactUsPage.CONTACT_US_HEADER_TEXT, contactUsPage.getHeaderText());
     }
 
 }

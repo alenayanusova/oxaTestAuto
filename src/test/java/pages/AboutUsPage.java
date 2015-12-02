@@ -26,7 +26,9 @@ public class AboutUsPage extends BasePage {
     @FindBy(xpath = ABOUT_US_HEADER)
     private WebElement aboutUsHeader;
 
-
+    final String CONTACT_US_LINK = "//a[contains(@href, '/free-quote/')]";
+    @FindBy(xpath = CONTACT_US_LINK)
+    private WebElement contactUsLink;
 
     final String QA_LINK = "//a[contains(text(),'quality assurance')]";
     @FindBy(xpath = QA_LINK)
@@ -36,6 +38,12 @@ public class AboutUsPage extends BasePage {
         waitForElement(ABOUT_US_HEADER);
         log.info("get 'ABOUT_US_HEADER'");
         return aboutUsHeader.getText();
+    }
+
+    public void goToContactUsFromAboutUsPage(){
+        waitForElement(CONTACT_US_LINK);
+        contactUsLink.click();
+        log.info("Click 'contactUsLink'");
     }
 
     public void goToQAPage(){

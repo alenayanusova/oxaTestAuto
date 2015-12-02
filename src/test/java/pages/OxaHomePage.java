@@ -48,10 +48,9 @@ public class OxaHomePage extends BasePage {
     @FindBy(xpath = NEWS_LINK)
     private WebElement newsLink;
 
-    final String CONTACT_US_BUTTON = "//a[contains(@href, '/free-quote/')]";
+    final String CONTACT_US_BUTTON = "//a[contains(@href, 'http://redesign-qa.oxagile.com/free-quote/')]";
     @FindBy(xpath = CONTACT_US_BUTTON)
     private WebElement contactUsButton;
-
 
 
     public void goToTabAboutAs(){
