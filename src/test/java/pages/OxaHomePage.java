@@ -3,7 +3,6 @@ package pages;
 import base.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -21,9 +20,9 @@ public class OxaHomePage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    final String ABOUT_AS_TAB = "//*[@id='top-menu-107']";
-    @FindBy(xpath = ABOUT_AS_TAB)
-    private WebElement aboutAsTab;
+    final String ABOUT_US_TAB = "//*[@id='top-menu-107']";
+    @FindBy(xpath = ABOUT_US_TAB)
+    private WebElement aboutUsTab;
 
     final String SERVICES_TAB = "//*[@id='top-menu-115']";
     @FindBy(xpath = SERVICES_TAB)
@@ -45,14 +44,37 @@ public class OxaHomePage extends BasePage {
     @FindBy(xpath = SEARCH_SUBMIT_BUTTON)
     private WebElement searchSubmitButton;
 
+    final String NEWS_LINK = "//a[contains(@href, 'http://redesign-qa.oxagile.com/company/news/')]";
+    @FindBy(xpath = NEWS_LINK)
+    private WebElement newsLink;
+
+    final String CONTACT_US_BUTTON = "//a[contains(@href, '/free-quote/')]";
+    @FindBy(xpath = CONTACT_US_BUTTON)
+    private WebElement contactUsButton;
+
 
 
     public void goToTabAboutAs(){
-        waitForElement(ABOUT_AS_TAB);
-        aboutAsTab.click();
-        log.info("Click 'tabAboutAs'");
+        waitForElement(ABOUT_US_TAB);
+        aboutUsTab.click();
+        log.info("Click 'tabAboutUs'");
     }
 
+    public void goToNewsPageFromAboutUsMenu(){
+        waitForElement(ABOUT_US_TAB);
+        waitForElement(NEWS_LINK);
+        Actions builder = new Actions(driver);
+        builder.moveToElement(aboutUsTab).click(newsLink).build().perform();
+        log.info("Hover on aboutUsTab and click 'newsLink'");
+    }
+
+    public void goToContactUsFromAboutUsMenu(){
+        waitForElement(ABOUT_US_TAB);
+        waitForElement(CONTACT_US_BUTTON);
+        Actions builder = new Actions(driver);
+        builder.moveToElement(aboutUsTab).click(contactUsButton).build().perform();
+        log.info("Hover on aboutUsTab and click 'contactUsButton'");
+    }
     public void goToTabServices(){
         waitForElement(SERVICES_TAB);
         servicesTab.click();
@@ -65,12 +87,14 @@ public class OxaHomePage extends BasePage {
         log.info("Click 'tabPortfolio'");
     }
 
-    public void tryToSearch(String key){
+    public void tryToSearch(String key) {
         waitForElement(SEARCH_HOVER);
         waitForElement(SEARCH_FIELD);
         Actions builder = new Actions(driver);
         builder.moveToElement(searchHover).sendKeys(searchField,key).build().perform();
+        log.info("Send value in 'searchField'");
         waitForElement(SEARCH_SUBMIT_BUTTON);
         searchSubmitButton.click();
+        log.info("Click 'searchSubmitButton'");
     }
 }

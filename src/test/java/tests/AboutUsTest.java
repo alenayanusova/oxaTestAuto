@@ -10,7 +10,7 @@ import pages.*;
  * @author yanusovaaa
  */
 
-public class AboutAsTest extends BaseTest {
+public class AboutUsTest extends BaseTest {
 
     @Test
     public void test1(){
@@ -19,8 +19,8 @@ public class AboutAsTest extends BaseTest {
         oxaHomePage.goToTabAboutAs();
 
         log.info("Log step 2: Check that page is About As");
-        AboutAsPage aboutAsPage = new AboutAsPage(driver);
-        Assert.assertEquals("page isn't about us", AboutAsPage.ABOUT_AS_HEADER_TEXT, aboutAsPage.getHeaderText());
+        AboutUsPage aboutUsPage = new AboutUsPage(driver);
+        Assert.assertEquals("page isn't about us", AboutUsPage.ABOUT_AS_HEADER_TEXT, aboutUsPage.getHeaderText());
 
     }
 
@@ -31,8 +31,7 @@ public class AboutAsTest extends BaseTest {
         oxaHomePage.goToTabAboutAs();
 
         log.info("Log step 2: Go to News");
-        AboutAsPage aboutAsPage = new AboutAsPage(driver);
-        aboutAsPage.goToNews();
+        oxaHomePage.goToNewsPageFromAboutUsMenu();
 
         log.info("Log step 3: Check that page is News");
         NewsPage newsPage = new NewsPage(driver);
@@ -46,8 +45,7 @@ public class AboutAsTest extends BaseTest {
         oxaHomePage.goToTabAboutAs();
 
         log.info("Log step 2: Go to Contact Us");
-        AboutAsPage aboutAsPage = new AboutAsPage(driver);
-        aboutAsPage.goToContactUs();
+        oxaHomePage.goToContactUsFromAboutUsMenu();
 
         log.info("Log step 3: Check that page is Contact Us");
         ContactUsPage contactUsPage = new ContactUsPage(driver);
@@ -74,8 +72,8 @@ public class AboutAsTest extends BaseTest {
         oxaHomePage.goToTabAboutAs();
 
         log.info("Log step 2: Go to QA page");
-        AboutAsPage aboutAsPage = new AboutAsPage(driver);
-        aboutAsPage.goToQAPage();
+        AboutUsPage aboutUsPage = new AboutUsPage(driver);
+        aboutUsPage.goToQAPage();
 
         log.info("Log step 3: Go to Contact Us");
         QAPage qaPage = new QAPage(driver);
