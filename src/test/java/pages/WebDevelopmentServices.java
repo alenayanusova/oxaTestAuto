@@ -18,15 +18,15 @@ public class WebDevelopmentServices extends BasePage{
         PageFactory.initElements(driver, this);
     }
 
-    public  final static String WEB_DEVELOPMENT_SERVICED_HEADER_TEXT = "Web Development Services";
+    public  final static String WEB_DEVELOPMENT_SERVICES_HEADER_TEXT = "Web Development Services";
 
-    final String WEB_DEVELOPMENT_SERVICED_HEADER = "//div[@class='header']";
-    @FindBy(xpath = WEB_DEVELOPMENT_SERVICED_HEADER)
+    final String WEB_DEVELOPMENT_SERVICES_HEADER = "//div[@class='header']";
+    @FindBy(xpath = WEB_DEVELOPMENT_SERVICES_HEADER)
     private WebElement webDevelopmentServicesHeader;
 
     public String getHeaderText(){
-        waitForElement(WEB_DEVELOPMENT_SERVICED_HEADER);
-        log.info("get 'WEB_DEVELOPMENT_SERVICED_HEADER'");
+        waitForElement(WEB_DEVELOPMENT_SERVICES_HEADER);
+        log.info("get 'WEB_DEVELOPMENT_SERVICES_HEADER'");
         return webDevelopmentServicesHeader.getText();
     }
 }

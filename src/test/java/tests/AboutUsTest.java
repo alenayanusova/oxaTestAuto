@@ -134,7 +134,22 @@ public class AboutUsTest extends BaseTest {
 
         log.info("Log step 3: Check that page is Web development services page");
         WebDevelopmentServices webDevelopmentServices = new WebDevelopmentServices(driver);
-        Assert.assertEquals("page isn't web development services", WebDevelopmentServices.WEB_DEVELOPMENT_SERVICED_HEADER_TEXT, webDevelopmentServices.getHeaderText());
+        Assert.assertEquals("page isn't web development services", WebDevelopmentServices.WEB_DEVELOPMENT_SERVICES_HEADER_TEXT, webDevelopmentServices.getHeaderText());
+    }
+
+    @Test
+    public void test9(){
+        log.info("Log step 1: Go to About As tab");
+        OxaHomePage oxaHomePage = new OxaHomePage(driver);
+        oxaHomePage.goToTabAboutAs();
+
+        log.info("Log step 2: Go to Mobile development services page");
+        AboutUsPage aboutUsPage = new AboutUsPage(driver);
+        aboutUsPage.goToMobileApplicationDevelopmentServices();
+
+        log.info("Log step 3: Check that page is Mobile development services page");
+        MobileDevelopmentServices mobileDevelopmentServices = new MobileDevelopmentServices(driver);
+        Assert.assertEquals("page isn't web development services", MobileDevelopmentServices.MOBILE_DEVELOPMENT_SERVICED_HEADER_TEXT, mobileDevelopmentServices.getHeaderText());
     }
 
 }
