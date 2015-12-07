@@ -3,6 +3,7 @@ package tests;
 import base.BaseTest;
 import org.junit.Assert;
 import org.junit.Test;
+import org.openqa.selenium.support.PageFactory;
 import pages.*;
 
 /**
@@ -11,15 +12,26 @@ import pages.*;
  */
 
 public class AboutUsTest extends BaseTest {
+    @Override
+    public void initPages() {
+        oxaHomePage = PageFactory.initElements(driver, OxaHomePage.class);
+        aboutUsPage = PageFactory.initElements(driver, AboutUsPage.class);
+        newsPage = PageFactory.initElements(driver, NewsPage.class);
+        contactUsPage = PageFactory.initElements(driver, ContactUsPage.class);
+        softwareQualityAssurance = PageFactory.initElements(driver, SoftwareQualityAssurance.class);
+        searchResultsPage = PageFactory.initElements(driver, SearchResultsPage.class);
+        webDevelopmentServices = PageFactory.initElements(driver, WebDevelopmentServices.class);
+        mobileDevelopmentServices = PageFactory.initElements(driver, MobileDevelopmentServices.class);
+        technicalSupportAndMaintenancePage = PageFactory.initElements(driver, TechnicalSupportAndMaintenancePage.class);
+        customSoftwareDevelopmentServices = PageFactory.initElements(driver, CustomSoftwareDevelopmentServices.class);
+
+    }
 
     @Test
     public void test1(){
         log.info("Log step 1: Go to About As tab");
-        OxaHomePage oxaHomePage = new OxaHomePage(driver);
         oxaHomePage.goToTabAboutAs();
-
         log.info("Log step 2: Check that page is About As");
-        AboutUsPage aboutUsPage = new AboutUsPage(driver);
         Assert.assertEquals("page isn't about us", AboutUsPage.ABOUT_AS_HEADER_TEXT, aboutUsPage.getHeaderText());
 
     }
@@ -27,25 +39,20 @@ public class AboutUsTest extends BaseTest {
     @Test
     public void test2(){
         log.info("Log step 1: Go to About As tab");
-        OxaHomePage oxaHomePage = new OxaHomePage(driver);
-        oxaHomePage.goToTabAboutAs();
 
+        oxaHomePage.goToTabAboutAs();
         log.info("Log step 2: Go to News");
         oxaHomePage.goToNewsPageFromAboutUsMenu();
-
         log.info("Log step 3: Check that page is News");
-        NewsPage newsPage = new NewsPage(driver);
         Assert.assertEquals("page isn't news", NewsPage.NEWS_HEADER_TEXT, newsPage.getHeaderText());
     }
 
     @Test
     public void test3(){
         log.info("Log step 1: Go to Contact Us for About Us menu");
-        OxaHomePage oxaHomePage = new OxaHomePage(driver);
         oxaHomePage.goToContactUsFromAboutUsMenu();
 
         log.info("Log step 2: Check that page is Contact Us");
-        ContactUsPage contactUsPage = new ContactUsPage(driver);
         Assert.assertEquals("page isn't contact us", ContactUsPage.CONTACT_US_HEADER_TEXT, contactUsPage.getHeaderText());
 
         log.info("Log step 3: Check for required NAME field");
@@ -65,105 +72,84 @@ public class AboutUsTest extends BaseTest {
     @Test
     public void test4(){
         log.info("Log step 1: Go to About As tab");
-        OxaHomePage oxaHomePage = new OxaHomePage(driver);
         oxaHomePage.goToTabAboutAs();
 
         log.info("Log step 2: Go to QA page");
-        AboutUsPage aboutUsPage = new AboutUsPage(driver);
         aboutUsPage.goToQAPage();
 
         log.info("Log step 3: Go to Contact Us");
-        SoftwareQualityAssurance softwareQualityAssurance = new SoftwareQualityAssurance(driver);
         softwareQualityAssurance.goToContactUs();
 
         log.info("Log step 4: Check that page is Contact Us");
-        ContactUsPage contactUsPage = new ContactUsPage(driver);
         Assert.assertEquals("page isn't contact us", ContactUsPage.CONTACT_US_HEADER_TEXT, contactUsPage.getHeaderText());
     }
 
     @Test
     public void test5(){
         log.info("Log step 1: Try to search");
-        OxaHomePage oxaHomePage = new OxaHomePage(driver);
         oxaHomePage.tryToSearch("java");
 
         log.info("Log step 2: Check that page is Search");
-        SearchResultsPage searchResultsPage = new SearchResultsPage(driver);
         Assert.assertEquals("page isn't search results", searchResultsPage.getExpectedResult("java"), searchResultsPage.getHeaderText());
     }
 
     @Test
     public void test6(){
         log.info("Log step 1: Go to About As tab");
-        OxaHomePage oxaHomePage = new OxaHomePage(driver);
         oxaHomePage.goToTabAboutAs();
 
         log.info("Log step 2: Go to Contact Us from About Us page");
-        AboutUsPage aboutUsPage = new AboutUsPage(driver);
         aboutUsPage.goToContactUsFromAboutUsPage();
 
         log.info("Log step 3: Check that page is Contact Us");
-        ContactUsPage contactUsPage = new ContactUsPage(driver);
         Assert.assertEquals("page isn't contact us", ContactUsPage.CONTACT_US_HEADER_TEXT, contactUsPage.getHeaderText());
     }
 
     @Test
     public void test7(){
         log.info("Log step 1: Go to About As tab");
-        OxaHomePage oxaHomePage = new OxaHomePage(driver);
         oxaHomePage.goToTabAboutAs();
 
         log.info("Log step 2: Go to Customer software services page");
-        AboutUsPage aboutUsPage = new AboutUsPage(driver);
         aboutUsPage.goToCustomerSoftwareServices();
 
         log.info("Log step 3: Check that page is Customer software services page");
-        CustomSoftwareDevelopmentServices customSoftwareDevelopmentServices = new CustomSoftwareDevelopmentServices(driver);
         Assert.assertEquals("page isn't customer software services", CustomSoftwareDevelopmentServices.CUSTOMER_SOFTWARE_SERVICES_HEADER_TEXT, customSoftwareDevelopmentServices.getHeaderText());
     }
 
     @Test
     public void test8(){
         log.info("Log step 1: Go to About As tab");
-        OxaHomePage oxaHomePage = new OxaHomePage(driver);
         oxaHomePage.goToTabAboutAs();
 
         log.info("Log step 2: Go to Web development services page");
-        AboutUsPage aboutUsPage = new AboutUsPage(driver);
         aboutUsPage.goToWebDevelopmentServices();
 
         log.info("Log step 3: Check that page is Web development services page");
-        WebDevelopmentServices webDevelopmentServices = new WebDevelopmentServices(driver);
         Assert.assertEquals("page isn't web development services", WebDevelopmentServices.WEB_DEVELOPMENT_SERVICES_HEADER_TEXT, webDevelopmentServices.getHeaderText());
     }
 
     @Test
     public void test9(){
         log.info("Log step 1: Go to About As tab");
-        OxaHomePage oxaHomePage = new OxaHomePage(driver);
         oxaHomePage.goToTabAboutAs();
 
         log.info("Log step 2: Go to Mobile development services page");
-        AboutUsPage aboutUsPage = new AboutUsPage(driver);
         aboutUsPage.goToMobileApplicationDevelopmentServices();
 
         log.info("Log step 3: Check that page is Mobile development services page");
-        MobileDevelopmentServices mobileDevelopmentServices = new MobileDevelopmentServices(driver);
         Assert.assertEquals("page isn't web development services", MobileDevelopmentServices.MOBILE_DEVELOPMENT_SERVICED_HEADER_TEXT, mobileDevelopmentServices.getHeaderText());
     }
 
     @Test
     public void test10(){
         log.info("Log step 1: Go to About As tab");
-        OxaHomePage oxaHomePage = new OxaHomePage(driver);
         oxaHomePage.goToTabAboutAs();
 
         log.info("Log step 2: Go to Technical support page");
-        AboutUsPage aboutUsPage = new AboutUsPage(driver);
         aboutUsPage.goToTechnicalSupport();
 
         log.info("Log step 3: Check that page is Technical support page");
-        TechnicalSupportAndMaintenancePage technicalSupportAndMaintenancePage = new TechnicalSupportAndMaintenancePage(driver);
         Assert.assertEquals("page isn't web development services", TechnicalSupportAndMaintenancePage.TECHNICAL_SUPPORT_HEADER_TEXT, technicalSupportAndMaintenancePage.getHeaderText());
     }
 

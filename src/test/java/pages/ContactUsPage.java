@@ -23,6 +23,7 @@ public class ContactUsPage extends BasePage {
     public final static String NAME_VALIDATION_TEXT = "Enter your name, please";
     public final static String EMAIL_VALIDATION_TEXT = "Enter your email, please";
     public final static String MESSAGE_VALIDATION_TEXT = "Enter your message, please";
+    public final static String HUMAN_VALIDATION_TEXT = "The cursor is not at the end of the line";
 
     final String CONTACT_US_HEADER = "//div[@class='header']";
     @FindBy(xpath = CONTACT_US_HEADER)
@@ -52,6 +53,10 @@ public class ContactUsPage extends BasePage {
     @FindBy(xpath = MESSAGE_VALIDATION)
     private WebElement messageValidation;
 
+    final String HUMAN_VALIDATION = "//div[@class='capthca-error_message']/font";
+    @FindBy(xpath = HUMAN_VALIDATION)
+    private WebElement humanValidation;
+
     final String SEND_REQUEST_BUTTON = "//input[@value='Send Request']";
     @FindBy(xpath = SEND_REQUEST_BUTTON)
     private WebElement sendRequestButton;
@@ -80,6 +85,12 @@ public class ContactUsPage extends BasePage {
         return messageValidation.getText();
     }
 
+    public String getHumanValidationText(){
+        waitForElement(HUMAN_VALIDATION);
+        log.info("get 'HUMAN_VALIDATION'");
+        return humanValidation.getText();
+    }
+
     public void sendRequest(){
         waitForElement(SEND_REQUEST_BUTTON);
         sendRequestButton.click();
@@ -88,6 +99,7 @@ public class ContactUsPage extends BasePage {
 
     public void sendRequest(String name){
         waitForElement(NAME_FIELD);
+        nameField.clear();
         nameField.sendKeys(name);
         log.info("enter value in the 'NAME_FIELD'");
         waitForElement(SEND_REQUEST_BUTTON);
@@ -98,15 +110,36 @@ public class ContactUsPage extends BasePage {
 
     public void sendRequest(String name, String email){
         waitForElement(NAME_FIELD);
+        nameField.clear();
         nameField.sendKeys(name);
         log.info("enter value in the 'NAME_FIELD'");
         waitForElement(EMAIL_FIELD);
+        emailField.clear();
         emailField.sendKeys(email);
         log.info("enter value in the 'EMAIL_FIELD'");
         waitForElement(SEND_REQUEST_BUTTON);
         sendRequestButton.click();
         log.info("click on 'SEND_REQUEST_BUTTON'");
         waitForElement(MESSAGE_VALIDATION);
+    }
+
+    public void sendRequest(String name, String email, String message) {
+        waitForElement(NAME_FIELD);
+        nameField.clear();
+        nameField.sendKeys(name);
+        log.info("enter value in the 'NAME_FIELD'");
+        waitForElement(EMAIL_FIELD);
+        emailField.clear();
+        emailField.sendKeys(email);
+        log.info("enter value in the 'EMAIL_FIELD'");
+        waitForElement(MESSAGE_TEXT_AREA);
+        messageField.clear();
+        messageField.sendKeys(message);
+        log.info("enter value in the 'MESSAGE_TEXT_AREA'");
+        waitForElement(SEND_REQUEST_BUTTON);
+        sendRequestButton.click();
+        log.info("click on 'SEND_REQUEST_BUTTON'");
+        waitForElement(HUMAN_VALIDATION);
     }
 
 
