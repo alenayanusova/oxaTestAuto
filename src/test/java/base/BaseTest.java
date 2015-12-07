@@ -35,6 +35,7 @@ public abstract class BaseTest {
     public SoftwareQualityAssurance softwareQualityAssurance;
     public TechnicalSupportAndMaintenancePage technicalSupportAndMaintenancePage;
     public WebDevelopmentServices webDevelopmentServices;
+    public FreeQuotePage freeQuotePage;
 
     public abstract void initPages();
 
@@ -52,7 +53,7 @@ public abstract class BaseTest {
 
     @After
     public void shutDown() {
-        //driver.quit();
+        driver.quit();
         log.info("Driver shut down");
     }
 

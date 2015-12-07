@@ -3,6 +3,7 @@ package tests;
 import base.BaseTest;
 import org.junit.Assert;
 import org.junit.Test;
+import org.openqa.selenium.support.PageFactory;
 import pages.*;
 
 /**
@@ -15,7 +16,8 @@ public class FreeQuoteTest extends BaseTest {
 
     @Override
     public void initPages() {
-
+        oxaHomePage = PageFactory.initElements(driver, OxaHomePage.class);
+        freeQuotePage = PageFactory.initElements(driver, FreeQuotePage.class);
     }
 
     @Test
