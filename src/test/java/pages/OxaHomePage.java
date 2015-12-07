@@ -52,6 +52,10 @@ public class OxaHomePage extends BasePage {
     @FindBy(xpath = CONTACT_US_BUTTON)
     private WebElement contactUsButton;
 
+    final String FREE_QUOTE_BUTTON = "//div[contains(@class,'free-quote-btn')]/a[contains(@href, 'http://redesign-qa.oxagile.com/free-quote')]";
+    @FindBy(xpath = FREE_QUOTE_BUTTON)
+    private WebElement freeQuoteButton;
+
 
     public void goToTabAboutAs(){
         waitForElement(ABOUT_US_TAB);
@@ -95,5 +99,11 @@ public class OxaHomePage extends BasePage {
         waitForElement(SEARCH_SUBMIT_BUTTON);
         searchSubmitButton.click();
         log.info("Click 'searchSubmitButton'");
+    }
+
+    public void goToTabFreeQuote(){
+        waitForElement(FREE_QUOTE_BUTTON);
+        freeQuoteButton.click();
+        log.info("Click 'freeQuoteButton'");
     }
 }

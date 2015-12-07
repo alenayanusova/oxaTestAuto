@@ -31,7 +31,7 @@ public class BaseTest {
 
     @After
     public void shutDown() {
-        driver.quit();
+        //driver.quit();
         log.info("Driver shut down");
     }
 
