@@ -11,7 +11,13 @@ import pages.*;
  * @author pushkarevamn
  */
 
-public class FreeQuotePage extends BaseTest {
+public class FreeQuoteTest extends BaseTest {
+
+    @Override
+    public void initPages() {
+
+    }
+
     @Test
     public void test1(){
         log.info("Log step 1: Go to tab Free Quote");
@@ -23,5 +29,6 @@ public class FreeQuotePage extends BaseTest {
         freeQuotePage.horizontalSlide();
         Assert.assertEquals("Style is incorrect " + freeQuotePage.getHumanYes(), pages.FreeQuotePage.YES_STYLE, freeQuotePage.getHumanYes());
 }
+
 
 }

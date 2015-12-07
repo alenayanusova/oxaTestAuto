@@ -24,7 +24,7 @@ public class FreeQuotePage extends BasePage{
 
     public void horizontalSlide(){
         waitForElement(SLIDER);
-        log.info("get 'Move slider'");
+        log.info("get 'Move slider to the right side'");
         Actions actions = new Actions(driver);
         actions.dragAndDrop(horizontalSlider,identifierYes);
         actions.build().perform();
