@@ -1,8 +1,8 @@
 package base;
 
 import org.apache.log4j.Logger;
-import org.junit.After;
-import org.junit.Before;
+
+import org.testng.annotations.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import pages.*;
@@ -40,7 +40,7 @@ public abstract class BaseTest {
     public abstract void initPages();
 
 
-    @Before
+    @BeforeMethod
     public void setUp() {
         driver = new FirefoxDriver();
         initPages();
@@ -51,7 +51,7 @@ public abstract class BaseTest {
 
     }
 
-    @After
+    @AfterMethod
     public void shutDown() {
         driver.quit();
         log.info("Driver shut down");

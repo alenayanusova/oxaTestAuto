@@ -2,7 +2,7 @@ package tests;
 
 import base.BaseTest;
 import org.junit.Assert;
-import org.junit.Test;
+import org.testng.annotations.*;
 import org.openqa.selenium.support.PageFactory;
 import pages.*;
 

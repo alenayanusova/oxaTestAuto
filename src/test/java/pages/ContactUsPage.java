@@ -45,6 +45,11 @@ public class ContactUsPage extends BasePage {
     @FindBy(xpath = EMAIL_VALIDATION)
     private WebElement emailValidation;
 
+    final String WRONG_EMAIL ="//*[@id='request-error-message-email']";
+    @FindBy(xpath = WRONG_EMAIL)
+    private WebElement wrongEmail;
+
+
     final String MESSAGE_TEXT_AREA = "//textarea[@id='_message']";
     @FindBy(xpath = MESSAGE_TEXT_AREA)
     private WebElement messageField;
@@ -60,6 +65,14 @@ public class ContactUsPage extends BasePage {
     final String SEND_REQUEST_BUTTON = "//input[@value='Send Request']";
     @FindBy(xpath = SEND_REQUEST_BUTTON)
     private WebElement sendRequestButton;
+
+    final String SLIDER = "//div[contains(@class,'noUi-handle')]";
+    @FindBy(xpath = SLIDER)
+    private WebElement horizontalSlider;
+
+    final String IDENTIFIER_YES = "//div[@class='big-box captcha']/span";
+    @FindBy(xpath = IDENTIFIER_YES)
+    private WebElement identifierYes;
 
     public String getHeaderText(){
         waitForElement(CONTACT_US_HEADER);
@@ -77,6 +90,12 @@ public class ContactUsPage extends BasePage {
         waitForElement(EMAIL_VALIDATION);
         log.info("get 'EMAIL_VALIDATION'");
         return emailValidation.getText();
+    }
+
+    public String getWrongEmailText(){
+        waitForElement(WRONG_EMAIL);
+        log.info("get 'WRONG_EMAIL'");
+        return wrongEmail.getText();
     }
 
     public String getMessageValidationText(){
@@ -140,6 +159,20 @@ public class ContactUsPage extends BasePage {
         sendRequestButton.click();
         log.info("click on 'SEND_REQUEST_BUTTON'");
         waitForElement(HUMAN_VALIDATION);
+    }
+
+    public void emailWrong(String name, String email) {
+        waitForElement(NAME_FIELD);
+        nameField.clear();
+        nameField.sendKeys(name);
+        log.info("enter value in the 'NAME_FIELD'");
+        waitForElement(EMAIL_FIELD);
+        emailField.clear();
+        emailField.sendKeys(email);
+        waitForElement(SEND_REQUEST_BUTTON);
+        sendRequestButton.click();
+        log.info("click on 'SEND_REQUEST_BUTTON'");
+        waitForElement(WRONG_EMAIL);
     }
 
 

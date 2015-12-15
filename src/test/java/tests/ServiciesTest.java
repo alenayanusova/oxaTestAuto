@@ -1,8 +1,9 @@
 package tests;
 
 import base.BaseTest;
-import org.junit.Test;
+
 import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.*;
 import pages.OxaHomePage;
 import pages.ServiciesPage;
 import static org.junit.Assert.*;

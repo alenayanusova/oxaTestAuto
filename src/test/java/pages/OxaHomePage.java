@@ -57,6 +57,8 @@ public class OxaHomePage extends BasePage {
     private WebElement freeQuoteButton;
 
 
+
+
     public void goToTabAboutAs(){
         waitForElement(ABOUT_US_TAB);
         aboutUsTab.click();
