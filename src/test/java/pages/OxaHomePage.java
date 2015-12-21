@@ -1,11 +1,14 @@
 package pages;
 
 import base.BasePage;
+import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import java.util.NoSuchElementException;
 
 
 /**
@@ -92,14 +95,21 @@ public class OxaHomePage extends BasePage {
     }
 
     public void tryToSearch(String key) {
-        waitForElement(SEARCH_HOVER);
-        waitForElement(SEARCH_FIELD);
-        Actions builder = new Actions(driver);
-        builder.moveToElement(searchHover).sendKeys(searchField,key).build().perform();
-        log.info("Send value in 'searchField'");
-        waitForElement(SEARCH_SUBMIT_BUTTON);
-        searchSubmitButton.click();
-        log.info("Click 'searchSubmitButton'");
+        try {
+            searchField.sendKeys(key);
+            log.info("Send value in 'searchField'");
+        } catch (ElementNotVisibleException e){
+            log.info("'searchField' wasn't found. Plan B");
+            waitForElement(SEARCH_HOVER);
+            waitForElement(SEARCH_FIELD);
+            Actions builder = new Actions(driver);
+            builder.moveToElement(searchHover).sendKeys(searchField,key).build().perform();
+            log.info("Send value in 'searchField'");
+            waitForElement(SEARCH_SUBMIT_BUTTON);
+            searchSubmitButton.click();
+            log.info("Click 'searchSubmitButton'");
+        }
+
     }
 
     public void goToTabFreeQuote(){

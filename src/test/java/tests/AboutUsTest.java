@@ -12,6 +12,26 @@ import pages.*;
  */
 
 public class AboutUsTest extends BaseTest {
+
+    @DataProvider (name = "requiredFieldsValidation" )
+    public Object [][] requiredFieldsValidation () {
+        return new Object[][] {
+                {"", "", "", ContactUsPage.NAME_VALIDATION_TEXT},
+                {"name", "", "", ContactUsPage.EMAIL_VALIDATION_TEXT},
+                {"name", "alena.yanusova@oxagile.com", "", ContactUsPage.MESSAGE_VALIDATION_TEXT},
+                {"name", "alena.yanusova@oxagile.com", "text", ContactUsPage.HUMAN_VALIDATION_TEXT},
+
+        };
+    }
+
+    @DataProvider (name = "keysForSearch" )
+    public Object [][] keysForSearch () {
+        return new Object[][] {
+                {"java"},
+                {"dsfsdfdsfds"},
+        };
+    }
+
     @Override
     public void initPages() {
         oxaHomePage = PageFactory.initElements(driver, OxaHomePage.class);
@@ -47,22 +67,15 @@ public class AboutUsTest extends BaseTest {
         Assert.assertEquals("page isn't news", NewsPage.NEWS_HEADER_TEXT, newsPage.getHeaderText());
     }
 
-    @Test
-    public void test3(){
+    @Test (dataProvider = "requiredFieldsValidation" )
+    public void test3(String name, String email, String text, String expected){
         log.info("Log step 1: Go to Contact Us for About Us menu");
         oxaHomePage.goToContactUsFromAboutUsMenu();
 
-        log.info("Log step 2: Check for required NAME field");
-        contactUsPage.sendRequest();
-        Assert.assertEquals("validation message for name field wasn't found", ContactUsPage.NAME_VALIDATION_TEXT, contactUsPage.getNameValidationText());
 
-        log.info("Log step 3: Check for required EMAIL field");
-        contactUsPage.sendRequest("name");
-        Assert.assertEquals("validation message for email field wasn't found", ContactUsPage.EMAIL_VALIDATION_TEXT, contactUsPage.getEmailValidationText());
-
-        log.info("log step 4: Check for required Message textarea");
-        contactUsPage.sendRequest("name", "alena.yanusova@oxagile.com");
-        Assert.assertEquals("validation message for message textarea wasn't found", ContactUsPage.MESSAGE_VALIDATION_TEXT, contactUsPage.getMessageValidationText());
+        log.info("log step 2: Check for " + expected + " validation");
+        contactUsPage.sendRequest(name, email, text);
+        Assert.assertEquals("validation message wasn't found", expected, contactUsPage.getValidationText(name, email, text));
 
     }
 
@@ -81,13 +94,13 @@ public class AboutUsTest extends BaseTest {
         Assert.assertEquals("page isn't contact us", ContactUsPage.CONTACT_US_HEADER_TEXT, contactUsPage.getHeaderText());
     }
 
-    @Test
-    public void test5(){
+    @Test (dataProvider = "keysForSearch" )
+    public void test5(String key){
         log.info("Log step 1: Try to search");
-        oxaHomePage.tryToSearch("java");
+        oxaHomePage.tryToSearch(key);
 
-        log.info("Log step 2: Check that page is Search");
-        Assert.assertEquals("page isn't search results", searchResultsPage.getExpectedResult("java"), searchResultsPage.getHeaderText());
+        log.info("Log step 2: Check that search works correct");
+        Assert.assertTrue("search works incorrect", searchResultsPage.checkAllPagesForResults(key));
     }
 
     @Test

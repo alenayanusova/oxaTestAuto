@@ -7,6 +7,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.NoSuchElementException;
+
 /**
  * Created by yanusovaaa on 11/30/2015.
  * @author yanusovaaa
@@ -110,6 +112,27 @@ public class ContactUsPage extends BasePage {
         return humanValidation.getText();
     }
 
+    public String getValidationText(String name, String email, String text){
+        if (name.equals("")) {
+            waitForElement(NAME_VALIDATION);
+            log.info("check for 'NAME_VALIDATION'");
+            return nameValidation.getText();
+        } else if (email.equals("")) {
+            waitForElement(EMAIL_VALIDATION);
+            log.info("check for 'EMAIL_VALIDATION'");
+            return emailValidation.getText();
+        } else if (text.equals("")) {
+            waitForElement(MESSAGE_VALIDATION);
+            log.info("check for 'MESSAGE_VALIDATION'");
+            return messageValidation.getText();
+        } else {
+            waitForElement(HUMAN_VALIDATION);
+            log.info("check for 'HUMAN_VALIDATION'");
+            return humanValidation.getText();
+
+        }
+    }
+
     public void sendRequest(){
         waitForElement(SEND_REQUEST_BUTTON);
         sendRequestButton.click();
@@ -158,7 +181,7 @@ public class ContactUsPage extends BasePage {
         waitForElement(SEND_REQUEST_BUTTON);
         sendRequestButton.click();
         log.info("click on 'SEND_REQUEST_BUTTON'");
-        waitForElement(HUMAN_VALIDATION);
+
     }
 
     public void emailWrong(String name, String email) {
