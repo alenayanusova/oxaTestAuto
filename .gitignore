@@ -1,4 +1,5 @@
 .idea/
 target/
 oxaTestAuto.iml
+log4j.properties
 log4j.log
