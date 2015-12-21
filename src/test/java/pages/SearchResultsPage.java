@@ -48,32 +48,49 @@ public class SearchResultsPage extends BasePage {
         return searchResultHeader.getText();
     }
 
-    public boolean checkPageSearchResults(String key) {
-        boolean flag = false;
+    public boolean checkSearchResultsForOnePage(String key) {
+
         log.info("check that search result are here");
+
+        int i = 1;
+
         if (isElementPresent(SEARCH_RESULTS)) {
-            int i = 1;
+
             for (int j = 0; j < searchResults.size(); j++) {
-                isElementPresent("//strong[text()='" + key + "']");
-                i++;
+                if (isElementPresent("//strong[text()='" + key + "']")) {
+                    i++;
+                } else break;
             }
-            if (i >= searchResults.size()) {
-                flag = true;
-            } else flag = false;
-        }return flag;
+        }
+
+        if (i < searchResults.size()){
+            return false;
+        } else return true;
+
     }
 
     public boolean checkAllPagesForResults(String key){
         log.info("check message for incorrect requests");
+        boolean flag = false;
         if (isElementPresent(SEARCH_RESULT_IS_ABSENT)) {
-            return true;
-        } else if (isElementPresent(PAGES_NAVIGATION)|checkPageSearchResults(key)){
-            while (isElementPresent(NEXT_RESULT_PAGE)){
-                log.info("check that next page is present");
-                nextResultPage.click();
-                log.info("go to next page");
-            } return checkPageSearchResults(key);
-        } else return false;
+            flag = true;
+        } else {
+            if (checkSearchResultsForOnePage(key) && isElementPresent(PAGES_NAVIGATION)) {
+                while (isElementPresent(NEXT_RESULT_PAGE)) {
+                    log.info("check that next page is present");
+                    nextResultPage.click();
+                    log.info("go to next page");
+                    if (checkSearchResultsForOnePage(key)){
+                        flag = true;
+                    } else {
+                        flag = false;
+                        break;
+                    }
+                }
+            }
+        }
+
+        return flag;
 
     }
 

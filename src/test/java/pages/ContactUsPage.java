@@ -113,15 +113,15 @@ public class ContactUsPage extends BasePage {
     }
 
     public String getValidationText(String name, String email, String text){
-        if (name.equals("")) {
+        if ("".equals(name)) {
             waitForElement(NAME_VALIDATION);
             log.info("check for 'NAME_VALIDATION'");
             return nameValidation.getText();
-        } else if (email.equals("")) {
+        } else if ("".equals(email)) {
             waitForElement(EMAIL_VALIDATION);
             log.info("check for 'EMAIL_VALIDATION'");
             return emailValidation.getText();
-        } else if (text.equals("")) {
+        } else if ("".equals(text)) {
             waitForElement(MESSAGE_VALIDATION);
             log.info("check for 'MESSAGE_VALIDATION'");
             return messageValidation.getText();

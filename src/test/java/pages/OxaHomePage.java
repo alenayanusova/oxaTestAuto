@@ -1,6 +1,7 @@
 package pages;
 
 import base.BasePage;
+import base.BaseTest;
 import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -46,15 +47,15 @@ public class OxaHomePage extends BasePage {
     @FindBy(xpath = SEARCH_SUBMIT_BUTTON)
     private WebElement searchSubmitButton;
 
-    final String NEWS_LINK = "//a[contains(@href, 'http://redesign-qa.oxagile.com/company/news/')]";
+    final String NEWS_LINK = "//a[contains(@href, '" +  BASE_URL + "/company/news/')]";
     @FindBy(xpath = NEWS_LINK)
     private WebElement newsLink;
 
-    final String CONTACT_US_BUTTON = "//a[contains(@href, 'http://redesign-qa.oxagile.com/free-quote/')]";
+    final String CONTACT_US_BUTTON = "//div[@class = 'call-us']/a[@class = 'button']";
     @FindBy(xpath = CONTACT_US_BUTTON)
     private WebElement contactUsButton;
 
-    final String FREE_QUOTE_BUTTON = "//div[contains(@class,'free-quote-btn')]/a[contains(@href, 'http://redesign-qa.oxagile.com/free-quote')]";
+    final String FREE_QUOTE_BUTTON = "//div[contains(@class,'free-quote-btn')]/a[@href, '" +  BASE_URL + "/free-quote')]";
     @FindBy(xpath = FREE_QUOTE_BUTTON)
     private WebElement freeQuoteButton;
 
@@ -77,7 +78,6 @@ public class OxaHomePage extends BasePage {
 
     public void goToContactUsFromAboutUsMenu(){
         waitForElement(ABOUT_US_TAB);
-        waitForElement(CONTACT_US_BUTTON);
         Actions builder = new Actions(driver);
         builder.moveToElement(aboutUsTab).click(contactUsButton).build().perform();
         log.info("Hover on aboutUsTab and click 'contactUsButton'");
