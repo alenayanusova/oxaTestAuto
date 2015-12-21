@@ -16,8 +16,8 @@ import java.util.concurrent.TimeUnit;
  * Created by sivenkovdn on 26.11.2015.
  * @author sivenkovdn
  */
-public class ServiciesPage extends BasePage {
-    public ServiciesPage(WebDriver driver) {
+public class ServicesPage extends BasePage {
+    public ServicesPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }

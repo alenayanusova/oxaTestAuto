@@ -5,7 +5,7 @@ import org.testng.annotations.*;
 import org.openqa.selenium.support.PageFactory;
 import pages.ContactUsPage;
 import pages.OxaHomePage;
-import pages.ServiciesPage;
+import pages.ServicesPage;
 
 import static org.junit.Assert.assertEquals;
 
@@ -29,7 +29,7 @@ public class ContactUsTest extends BaseTest {
     public void initPages() {
         oxaHomePage = PageFactory.initElements(driver, OxaHomePage.class);
         contactUsPage = PageFactory.initElements(driver, ContactUsPage.class);
-        serviciesPage = PageFactory.initElements(driver, ServiciesPage.class);
+        servicesPage = PageFactory.initElements(driver, ServicesPage.class);
     }
 
     @Test (enabled = false)
@@ -63,7 +63,7 @@ public class ContactUsTest extends BaseTest {
     @Test (dataProvider = "wrongEmailValidation" )
     public void emailValidationTest(String name, String email, String expected) {
         oxaHomePage.goToTabServices();
-        serviciesPage.goContactUsPage();
+        servicesPage.goContactUsPage();
         contactUsPage.emailWrong(name, email);
         assertEquals(expected, contactUsPage.getWrongEmailText());
 
