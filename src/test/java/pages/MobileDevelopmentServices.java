@@ -13,7 +13,6 @@ public class MobileDevelopmentServices extends BasePage {
 
     public MobileDevelopmentServices(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
     }
 
     public  final static String MOBILE_DEVELOPMENT_SERVICED_HEADER_TEXT = "Mobile Development Services";

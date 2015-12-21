@@ -17,7 +17,6 @@ public class AboutUsPage extends BasePage {
 
     public AboutUsPage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
     }
 
     public  final static  String ABOUT_AS_HEADER_TEXT = "About Us";

@@ -15,7 +15,6 @@ public class CustomSoftwareDevelopmentServices extends BasePage {
 
     public CustomSoftwareDevelopmentServices(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
     }
 
     public  final static String CUSTOMER_SOFTWARE_SERVICES_HEADER_TEXT = "Custom Software Development Services";

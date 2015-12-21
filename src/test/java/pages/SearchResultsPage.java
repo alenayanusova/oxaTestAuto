@@ -14,7 +14,6 @@ public class SearchResultsPage extends BasePage {
 
     public SearchResultsPage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
     }
 
     public  final static String SEARCH_RESULT_HEADER_TEXT = "Search\nSearch Results for: ";

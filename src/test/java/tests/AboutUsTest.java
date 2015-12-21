@@ -52,18 +52,15 @@ public class AboutUsTest extends BaseTest {
         log.info("Log step 1: Go to Contact Us for About Us menu");
         oxaHomePage.goToContactUsFromAboutUsMenu();
 
-        log.info("Log step 2: Check that page is Contact Us");
-        Assert.assertEquals("page isn't contact us", ContactUsPage.CONTACT_US_HEADER_TEXT, contactUsPage.getHeaderText());
-
-        log.info("Log step 3: Check for required NAME field");
+        log.info("Log step 2: Check for required NAME field");
         contactUsPage.sendRequest();
         Assert.assertEquals("validation message for name field wasn't found", ContactUsPage.NAME_VALIDATION_TEXT, contactUsPage.getNameValidationText());
 
-        log.info("Log step 4: Check for required EMAIL field");
+        log.info("Log step 3: Check for required EMAIL field");
         contactUsPage.sendRequest("name");
         Assert.assertEquals("validation message for email field wasn't found", ContactUsPage.EMAIL_VALIDATION_TEXT, contactUsPage.getEmailValidationText());
 
-        log.info("log step 5: Check for required Message textarea");
+        log.info("log step 4: Check for required Message textarea");
         contactUsPage.sendRequest("name", "alena.yanusova@oxagile.com");
         Assert.assertEquals("validation message for message textarea wasn't found", ContactUsPage.MESSAGE_VALIDATION_TEXT, contactUsPage.getMessageValidationText());
 

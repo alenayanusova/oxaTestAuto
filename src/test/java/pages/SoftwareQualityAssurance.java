@@ -15,7 +15,6 @@ public class SoftwareQualityAssurance extends BasePage{
 
     public SoftwareQualityAssurance(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
     }
 
 
