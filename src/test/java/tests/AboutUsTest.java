@@ -47,16 +47,20 @@ public class AboutUsTest extends BaseTest {
 
     }
 
-    @Test
+    @Test(enabled = false, description = "1) go to home page; \n"
+            + "2) go to about us; \n"
+            + "3) check that page is about us. \n")
     public void test1(){
-        log.info("Log step 1: Go to About As tab");
+        log.info("Log step 1: Go to About Us tab");
         oxaHomePage.goToTabAboutAs();
         log.info("Log step 2: Check that page is About As");
         Assert.assertEquals("page isn't about us", AboutUsPage.ABOUT_AS_HEADER_TEXT, aboutUsPage.getHeaderText());
 
     }
 
-    @Test
+    @Test (enabled = false, description = "1) go to home page; \n"
+            + "2) go to news; \n"
+            + "3) check that page is news")
     public void test2(){
         log.info("Log step 1: Go to About As tab");
 
@@ -67,8 +71,10 @@ public class AboutUsTest extends BaseTest {
         Assert.assertEquals("page isn't news", NewsPage.NEWS_HEADER_TEXT, newsPage.getHeaderText());
     }
 
-    @Test (dataProvider = "requiredFieldsValidation" )
-    public void test3(String name, String email, String text, String expected){
+    @Test(dataProvider = "requiredFieldsValidation", enabled = false, description = "1) go to home page; \n"
+            + "2) open contact us from about us menu by hover; \n"
+            + "3) check validation for all objects. \n")
+    public void test3(String name, String email, String text, String expected) {
         log.info("Log step 1: Go to Contact Us for About Us menu");
         oxaHomePage.goToContactUsFromAboutUsMenu();
 
@@ -79,7 +85,11 @@ public class AboutUsTest extends BaseTest {
 
     }
 
-    @Test
+    @Test (enabled = false, description = "1) go to home page; \n"
+            + "2) go to about us; \n"
+            + "3) go to QA page; \n"
+            + "4) go to contact us; \n"
+            + "5) check that page is contct us. \n")
     public void test4(){
         log.info("Log step 1: Go to About As tab");
         oxaHomePage.goToTabAboutAs();
@@ -94,7 +104,10 @@ public class AboutUsTest extends BaseTest {
         Assert.assertEquals("page isn't contact us", ContactUsPage.CONTACT_US_HEADER_TEXT, contactUsPage.getHeaderText());
     }
 
-    @Test (dataProvider = "keysForSearch" )
+    @Test (dataProvider = "keysForSearch", enabled = false, description = "1) open hame page; \n"
+            + "2) hover on search field; \n"
+            + "3) send search request; \n"
+            + "4(check that search works correct. \n")
     public void test5(String key){
         log.info("Log step 1: Try to search");
         oxaHomePage.tryToSearch(key);
@@ -103,7 +116,10 @@ public class AboutUsTest extends BaseTest {
         Assert.assertTrue("search works incorrect", searchResultsPage.checkAllPagesForResults(key));
     }
 
-    @Test
+    @Test (enabled = false, description = "1) go to home page; \n"
+            + "2) go to about us; \n"
+            + "3) go to contact us; \n"
+            + "4) check that page is contact us. \n")
     public void test6(){
         log.info("Log step 1: Go to About As tab");
         oxaHomePage.goToTabAboutAs();
