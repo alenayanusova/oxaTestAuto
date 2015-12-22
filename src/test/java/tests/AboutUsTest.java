@@ -27,7 +27,7 @@ public class AboutUsTest extends BaseTest {
     @DataProvider (name = "keysForSearch" )
     public Object [][] keysForSearch () {
         return new Object[][] {
-                {"java"},
+                {"Java"},
                 {"dsfsdfdsfds"},
         };
     }
