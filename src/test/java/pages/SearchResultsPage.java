@@ -3,8 +3,8 @@ package pages;
 import base.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.FindBys;
 
 import java.util.List;
 
@@ -19,14 +19,13 @@ public class SearchResultsPage extends BasePage {
     }
 
     public  final static String SEARCH_RESULT_HEADER_TEXT = "Search\nSearch Results for: ";
-    public final static String SEARCH_RESULT_IS_ABSENT_MESSAGE = "We're sorry, but your search returned no results. Please try another query.";
 
     final String SEARCH_RESULT_HEADER = "//div[@class='header']";
     @FindBy(xpath = SEARCH_RESULT_HEADER)
     private WebElement searchResultHeader;
 
     final String SEARCH_RESULTS = "//div[@class='search-list-item']";
-    @FindBys(@FindBy(xpath = SEARCH_RESULTS))
+    @FindAll(@FindBy(xpath = SEARCH_RESULTS))
     private List<WebElement> searchResults;
 
     final String PAGES_NAVIGATION = "//div[@class='page_nav']";
@@ -38,70 +37,76 @@ public class SearchResultsPage extends BasePage {
     @FindBy(xpath = NEXT_RESULT_PAGE)
     private WebElement nextResultPage;
 
-    final String SEARCH_RESULT_IS_ABSENT = "//div[@class='search-list-item-content']";
+    final String SEARCH_RESULT_IS_ABSENT = "//body[@class = 'search search-no-results full']";
     @FindBy(xpath = SEARCH_RESULT_IS_ABSENT)
     private WebElement searchResultIsAbsent;
 
-    public String getHeaderText(){
-        waitForElement(SEARCH_RESULT_HEADER);
-        log.info("get 'SEARCH_RESULT_HEADER'");
-        return searchResultHeader.getText();
+
+    public int checkThatSearchResultsIsHere(){
+        log.info("check that search result are here");
+        if (isElementPresent(SEARCH_RESULT_IS_ABSENT)){
+            log.info("search query is incorrect");
+            return 0;
+        }else if (isElementPresent(SEARCH_RESULTS)){
+            log.info("search results are here");
+            return 1;
+        } else {
+            log.info("search results weren't found");
+            return 2;
+        }
     }
 
     public boolean checkSearchResultsForOnePage(String key) {
+        log.info("check that all search results contain " + key);
+        int j;
 
-        log.info("check that search result are here");
+        waitForElement(SEARCH_RESULTS);
+        log.info("we have " + searchResults.size() + " results on the page");
 
-        int i = 1;
+        for (j = 0; j < searchResults.size()&&isElementPresent("//div[@class = 'search-list-item-content']/strong[text()='" + key + "']"); j++) {
 
-        if (isElementPresent(SEARCH_RESULTS)) {
-
-            for (int j = 0; j < searchResults.size(); j++) {
-                if (isElementPresent("//strong[text()='" + key + "']")) {
-                    i++;
-                } else break;
-            }
+            log.info("result " + j + " on page contain " + key);
         }
 
-        if (i < searchResults.size()){
+        log.info(j + "= j");
+
+        if (j == (searchResults.size())){
+            log.info("all results on page contain " + key);
+            return true;
+
+
+        } else {
+            log.info("any result on page don't contain " + key);
             return false;
-        } else return true;
+
+        }
 
     }
 
     public boolean checkAllPagesForResults(String key){
-        log.info("check message for incorrect requests");
         boolean flag = false;
-        if (isElementPresent(SEARCH_RESULT_IS_ABSENT)) {
+        if (checkThatSearchResultsIsHere() == 2){
+            flag = false;
+        } else if (checkThatSearchResultsIsHere() == 0){
             flag = true;
         } else {
-            if (checkSearchResultsForOnePage(key) && isElementPresent(PAGES_NAVIGATION)) {
-                while (isElementPresent(NEXT_RESULT_PAGE)) {
-                    log.info("check that next page is present");
-                    nextResultPage.click();
-                    log.info("go to next page");
-                    if (checkSearchResultsForOnePage(key)){
-                        flag = true;
-                    } else {
-                        flag = false;
+
+            if (!isElementPresent(PAGES_NAVIGATION)) {
+                log.info("one page is present only");
+                flag = checkSearchResultsForOnePage(key);
+            } else {
+                log.info("more pages is present");
+                for (int i = 1; isElementPresent(NEXT_RESULT_PAGE); nextResultPage.click(), i++) {
+                    log.info("go to " + i + " page");
+                    flag = checkSearchResultsForOnePage(key);
+                    if (!flag){
                         break;
                     }
+
                 }
             }
         }
-
         return flag;
-
-    }
-
-    public String getSearchResultIsAbsentMessage(){
-        waitForElement(SEARCH_RESULT_IS_ABSENT);
-        log.info("get 'SEARCH_RESULT_IS_ABSENT'");
-        return searchResultIsAbsent.getText();
-    }
-
-    public String getExpectedResult(String key){
-        return SEARCH_RESULT_HEADER_TEXT + "\"" + key + "\"";
     }
 
 }
