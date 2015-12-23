@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<suite name="ChromeTest" parallel="none">
+
+
+    <test name="ServiciesPageTest">
+        <parameter name="browser" value="chrome" />
+        <classes>
+            <class name="tests.ServiciesTest" />
+            <class name="tests.PortfolioTest" />
+            <class name="tests.ContactUsTest" />
+            <class name="tests.FreeQuoteTest" />
+        </classes>
+    </test>
+</suite>
