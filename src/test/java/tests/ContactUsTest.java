@@ -32,7 +32,7 @@ public class ContactUsTest extends BaseTest {
         servicesPage = PageFactory.initElements(driver, ServicesPage.class);
     }
 
-    @Test (enabled = false)
+    @Test (enabled = false, groups = "validation")
     public void validationEmptyFieldsTest() {
         oxaHomePage.goToContactUsFromAboutUsMenu();
         contactUsPage.sendRequest();
@@ -60,7 +60,7 @@ public class ContactUsTest extends BaseTest {
         assertEquals(ContactUsPage.HUMAN_VALIDATION_TEXT,contactUsPage.getHumanValidationText());
     }
 
-    @Test (dataProvider = "wrongEmailValidation" )
+    @Test (dataProvider = "wrongEmailValidation", groups = "validation")
     public void emailValidationTest(String name, String email, String expected) {
         oxaHomePage.goToTabServices();
         servicesPage.goContactUsPage();
