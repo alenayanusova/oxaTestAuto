@@ -5,7 +5,7 @@ import base.BaseTest;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.*;
 import pages.OxaHomePage;
-import pages.ServiciesPage;
+import pages.ServicesPage;
 import static org.junit.Assert.*;
 
 
@@ -19,7 +19,7 @@ public class ServiciesTest extends BaseTest {
     @Override
     public void initPages() {
         oxaHomePage = PageFactory.initElements(driver, OxaHomePage.class);
-        serviciesPage = PageFactory.initElements(driver, ServiciesPage.class);
+        servicesPage = PageFactory.initElements(driver, ServicesPage.class);
 
     }
 
@@ -27,7 +27,7 @@ public class ServiciesTest extends BaseTest {
     public void test(){
 
         oxaHomePage.goToTabServices();
-        serviciesPage.goCustomSoftwareDevelopmentServices();
+        servicesPage.goCustomSoftwareDevelopmentServices();
         assertEquals("Custom Software Development Services - Oxagile", driver.getTitle());
     }
 
@@ -35,14 +35,14 @@ public class ServiciesTest extends BaseTest {
     public void test2(){
 
         oxaHomePage.goToTabServices();
-        serviciesPage.goWebApplicationDevelopmentServices();
+        servicesPage.goWebApplicationDevelopmentServices();
         assertEquals("Web Development Company - Web App Development - Oxagile", driver.getTitle());
     }
 
     @Test
     public void test3(){
         oxaHomePage.goToTabServices();
-        serviciesPage.goMobileApplicationDevelopmentServices();
+        servicesPage.goMobileApplicationDevelopmentServices();
         assertEquals("Mobile Application Development Company - Mobile Development Services - Oxagile", driver.getTitle());
     }
 
@@ -50,7 +50,7 @@ public class ServiciesTest extends BaseTest {
     public void test4(){
 
         oxaHomePage.goToTabServices();
-        serviciesPage.goSoftwareTestingAndQAServices();
+        servicesPage.goSoftwareTestingAndQAServices();
         assertEquals("QA and Software Testing Professional Services - Oxagile", driver.getTitle());
     }
 
@@ -58,7 +58,7 @@ public class ServiciesTest extends BaseTest {
     public void test5(){
 
         oxaHomePage.goToTabServices();
-        serviciesPage.goSupportAndMaintenanceServices();
+        servicesPage.goSupportAndMaintenanceServices();
         assertEquals("Software Maintenance & Technical Support Services - Oxagile", driver.getTitle());
 
     }
@@ -66,7 +66,7 @@ public class ServiciesTest extends BaseTest {
     @Test
     public void test6(){
         oxaHomePage.goToTabServices();
-        serviciesPage.goContactUsPage();
+        servicesPage.goContactUsPage();
         assertEquals("Request Free Quote Form from Oxagile", driver.getTitle());
 
     }

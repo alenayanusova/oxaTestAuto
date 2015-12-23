@@ -12,6 +12,26 @@ import pages.*;
  */
 
 public class AboutUsTest extends BaseTest {
+
+    @DataProvider (name = "requiredFieldsValidation" )
+    public Object [][] requiredFieldsValidation () {
+        return new Object[][] {
+                {"", "", "", ContactUsPage.NAME_VALIDATION_TEXT},
+                {"name", "", "", ContactUsPage.EMAIL_VALIDATION_TEXT},
+                {"name", "alena.yanusova@oxagile.com", "", ContactUsPage.MESSAGE_VALIDATION_TEXT},
+                {"name", "alena.yanusova@oxagile.com", "text", ContactUsPage.HUMAN_VALIDATION_TEXT},
+
+        };
+    }
+
+    @DataProvider (name = "keysForSearch" )
+    public Object [][] keysForSearch () {
+        return new Object[][] {
+                {"Java"},
+                {"dsfsdfdsfds"},
+        };
+    }
+
     @Override
     public void initPages() {
         oxaHomePage = PageFactory.initElements(driver, OxaHomePage.class);
@@ -27,16 +47,20 @@ public class AboutUsTest extends BaseTest {
 
     }
 
-    @Test
+    @Test(enabled = false, description = "1) go to home page; \n"
+            + "2) go to about us; \n"
+            + "3) check that page is about us. \n")
     public void test1(){
-        log.info("Log step 1: Go to About As tab");
+        log.info("Log step 1: Go to About Us tab");
         oxaHomePage.goToTabAboutAs();
         log.info("Log step 2: Check that page is About As");
         Assert.assertEquals("page isn't about us", AboutUsPage.ABOUT_AS_HEADER_TEXT, aboutUsPage.getHeaderText());
 
     }
 
-    @Test
+    @Test (enabled = false, description = "1) go to home page; \n"
+            + "2) go to news; \n"
+            + "3) check that page is news")
     public void test2(){
         log.info("Log step 1: Go to About As tab");
 
@@ -47,29 +71,25 @@ public class AboutUsTest extends BaseTest {
         Assert.assertEquals("page isn't news", NewsPage.NEWS_HEADER_TEXT, newsPage.getHeaderText());
     }
 
-    @Test
-    public void test3(){
+    @Test(dataProvider = "requiredFieldsValidation", enabled = false, description = "1) go to home page; \n"
+            + "2) open contact us from about us menu by hover; \n"
+            + "3) check validation for all objects. \n")
+    public void test3(String name, String email, String text, String expected) {
         log.info("Log step 1: Go to Contact Us for About Us menu");
         oxaHomePage.goToContactUsFromAboutUsMenu();
 
-        log.info("Log step 2: Check that page is Contact Us");
-        Assert.assertEquals("page isn't contact us", ContactUsPage.CONTACT_US_HEADER_TEXT, contactUsPage.getHeaderText());
 
-        log.info("Log step 3: Check for required NAME field");
-        contactUsPage.sendRequest();
-        Assert.assertEquals("validation message for name field wasn't found", ContactUsPage.NAME_VALIDATION_TEXT, contactUsPage.getNameValidationText());
-
-        log.info("Log step 4: Check for required EMAIL field");
-        contactUsPage.sendRequest("name");
-        Assert.assertEquals("validation message for email field wasn't found", ContactUsPage.EMAIL_VALIDATION_TEXT, contactUsPage.getEmailValidationText());
-
-        log.info("log step 5: Check for required Message textarea");
-        contactUsPage.sendRequest("name", "alena.yanusova@oxagile.com");
-        Assert.assertEquals("validation message for message textarea wasn't found", ContactUsPage.MESSAGE_VALIDATION_TEXT, contactUsPage.getMessageValidationText());
+        log.info("log step 2: Check for " + expected + " validation");
+        contactUsPage.sendRequest(name, email, text);
+        Assert.assertEquals("validation message wasn't found", expected, contactUsPage.getValidationText(name, email, text));
 
     }
 
-    @Test
+    @Test (enabled = false, description = "1) go to home page; \n"
+            + "2) go to about us; \n"
+            + "3) go to QA page; \n"
+            + "4) go to contact us; \n"
+            + "5) check that page is contct us. \n")
     public void test4(){
         log.info("Log step 1: Go to About As tab");
         oxaHomePage.goToTabAboutAs();
@@ -84,16 +104,22 @@ public class AboutUsTest extends BaseTest {
         Assert.assertEquals("page isn't contact us", ContactUsPage.CONTACT_US_HEADER_TEXT, contactUsPage.getHeaderText());
     }
 
-    @Test
-    public void test5(){
+    @Test (dataProvider = "keysForSearch", enabled = false, description = "1) open hame page; \n"
+            + "2) hover on search field; \n"
+            + "3) send search request; \n"
+            + "4(check that search works correct. \n")
+    public void test5(String key){
         log.info("Log step 1: Try to search");
-        oxaHomePage.tryToSearch("java");
+        oxaHomePage.tryToSearch(key);
 
-        log.info("Log step 2: Check that page is Search");
-        Assert.assertEquals("page isn't search results", searchResultsPage.getExpectedResult("java"), searchResultsPage.getHeaderText());
+        log.info("Log step 2: Check that search works correct");
+        Assert.assertTrue("search works incorrect", searchResultsPage.checkAllPagesForResults(key));
     }
 
-    @Test
+    @Test (enabled = false, description = "1) go to home page; \n"
+            + "2) go to about us; \n"
+            + "3) go to contact us; \n"
+            + "4) check that page is contact us. \n")
     public void test6(){
         log.info("Log step 1: Go to About As tab");
         oxaHomePage.goToTabAboutAs();

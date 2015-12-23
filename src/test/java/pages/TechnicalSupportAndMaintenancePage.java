@@ -15,7 +15,6 @@ public class TechnicalSupportAndMaintenancePage extends BasePage {
 
     public TechnicalSupportAndMaintenancePage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
     }
 
     public  final static String TECHNICAL_SUPPORT_HEADER_TEXT = "Technical Support & Maintenance";

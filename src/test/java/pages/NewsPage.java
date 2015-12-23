@@ -15,7 +15,6 @@ public class NewsPage extends BasePage {
 
     public NewsPage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
     }
 
     public  final static  String NEWS_HEADER_TEXT = "News";

@@ -37,7 +37,7 @@ public abstract class BaseTest {
     public PhpPage phpPage;
     public PortfolioPage portfolioPage;
     public SearchResultsPage searchResultsPage;
-    public ServiciesPage serviciesPage;
+    public ServicesPage servicesPage;
     public SoftwareQualityAssurance softwareQualityAssurance;
     public TechnicalSupportAndMaintenancePage technicalSupportAndMaintenancePage;
     public WebDevelopmentServices webDevelopmentServices;

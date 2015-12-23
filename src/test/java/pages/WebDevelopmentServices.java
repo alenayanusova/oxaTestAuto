@@ -15,7 +15,6 @@ public class WebDevelopmentServices extends BasePage{
 
     public WebDevelopmentServices(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
     }
 
     public  final static String WEB_DEVELOPMENT_SERVICES_HEADER_TEXT = "Web Development Services";
