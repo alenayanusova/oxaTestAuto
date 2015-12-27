@@ -23,7 +23,7 @@ public class ServiciesTest extends BaseTest {
 
     }
 
-    @Test
+    @Test (enabled = false)
     public void test(){
 
         oxaHomePage.goToTabServices();
@@ -31,7 +31,7 @@ public class ServiciesTest extends BaseTest {
         assertEquals("Custom Software Development Services - Oxagile", driver.getTitle());
     }
 
-    @Test
+    @Test (enabled = false)
     public void test2(){
 
         oxaHomePage.goToTabServices();
@@ -39,14 +39,14 @@ public class ServiciesTest extends BaseTest {
         assertEquals("Web Development Company - Web App Development - Oxagile", driver.getTitle());
     }
 
-    @Test
+    @Test (enabled = false)
     public void test3(){
         oxaHomePage.goToTabServices();
         servicesPage.goMobileApplicationDevelopmentServices();
         assertEquals("Mobile Application Development Company - Mobile Development Services - Oxagile", driver.getTitle());
     }
 
-    @Test
+    @Test (enabled = false)
     public void test4(){
 
         oxaHomePage.goToTabServices();
@@ -54,7 +54,7 @@ public class ServiciesTest extends BaseTest {
         assertEquals("QA and Software Testing Professional Services - Oxagile", driver.getTitle());
     }
 
-    @Test
+    @Test (enabled = false)
     public void test5(){
 
         oxaHomePage.goToTabServices();
@@ -63,7 +63,7 @@ public class ServiciesTest extends BaseTest {
 
     }
 
-    @Test
+    @Test (enabled = false)
     public void test6(){
         oxaHomePage.goToTabServices();
         servicesPage.goContactUsPage();

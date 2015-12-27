@@ -20,7 +20,7 @@ public class FreeQuoteTest extends BaseTest {
         freeQuotePage = PageFactory.initElements(driver, FreeQuotePage.class);
     }
 
-    @Test
+    @Test(enabled = false)
     public void test1(){
         log.info("Log step 1: Go to tab Free Quote");
         OxaHomePage oxaHomePage = new OxaHomePage(driver);

@@ -23,7 +23,7 @@ public class PortfolioTest extends BaseTest {
         phpPage = PageFactory.initElements(driver, PhpPage.class);
     }
 
-    @Test
+    @Test (enabled = false)
     public void test1(){
         log.info("Log step 1: Go to tab Portfolio");
         oxaHomePage.goToTabPortfolio();
@@ -31,7 +31,7 @@ public class PortfolioTest extends BaseTest {
         portfolioPage.goToMobileDevelopment();
         assertEquals(mobilePage.getBreadcrumbsText(), MobilePage.BREADCRUMBS_TEXT);
     }
-    @Test
+    @Test (enabled = false)
         public void test2(){
         log.info("Log step 1: Go to tab Portfolio");
         oxaHomePage.goToTabPortfolio();
@@ -40,7 +40,7 @@ public class PortfolioTest extends BaseTest {
         assertEquals(netPage.getBreadcrumbsText(), NetPage.BREADCRUMBS_TEXT);
 
     }
-    @Test
+    @Test (enabled = false)
     public void test3(){
         log.info("Log step 1: Go to tab Portfolio");
         oxaHomePage.goToTabPortfolio();
@@ -49,7 +49,7 @@ public class PortfolioTest extends BaseTest {
         assertEquals(javaPage.getBreadcrumbsText(), JavaPage.BREADCRUMBS_TEXT);
 
     }
-    @Test
+    @Test (enabled = false)
     public void test4(){
         log.info("Log step 1: Go to tab Portfolio");
         oxaHomePage.goToTabPortfolio();

@@ -20,7 +20,7 @@ public class BasePage {
         this.driver = driver;
     }
 
-    protected final String BASE_URL = "http://redesign-qa.oxagile.com/";
+    protected final String BASE_URL = "http://www.oxagile.com";
 
     public boolean isElementPresent(String by) {
         try {

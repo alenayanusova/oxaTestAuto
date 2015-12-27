@@ -2,6 +2,8 @@ package base;
 
 import org.apache.log4j.Logger;
 
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.opera.OperaDriver;
@@ -11,8 +13,14 @@ import org.testng.annotations.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import pages.*;
+import ru.yandex.qatools.allure.annotations.Attachment;
+import ru.yandex.qatools.allure.annotations.Step;
 
 import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -23,7 +31,7 @@ import java.util.concurrent.TimeUnit;
 public abstract class BaseTest {
     protected WebDriver driver;
     protected Logger log = Logger.getLogger(this.getClass().getName());
-    protected final String BASE_URL = "http://redesign-qa.oxagile.com/";
+    protected final String BASE_URL = "http://www.oxagile.com/";
 
     public AboutUsPage aboutUsPage;
     public ContactUsPage contactUsPage;
@@ -45,24 +53,11 @@ public abstract class BaseTest {
 
     public abstract void initPages();
 
-    @Parameters("browser")
-    @BeforeMethod
-    public void setUp(String browser) {
+    @BeforeTest
+    public void setUp() {
        // driver = new FirefoxDriver();
-        if (browser.equalsIgnoreCase("firefox")) {
-            driver = new FirefoxDriver();
-        } else if (browser.equalsIgnoreCase("chrome")) {
-            System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
-            driver = new ChromeDriver();
-        } else if (browser.equalsIgnoreCase("ie")) {
-            File file = new File("C:\\IEDriverServer.exe");
-            System.setProperty("webdriver.ie.driver", file.getAbsolutePath());
-            DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer();
-            driver = new InternetExplorerDriver(capabilities);
-        }
-        else {
-            throw new IllegalArgumentException("The Browser Type is Undefined");
-        }
+        driver = BrowserFactory.getBrowser("Firefox");
+
         initPages();
 
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -71,11 +66,18 @@ public abstract class BaseTest {
 
     }
 
-    @AfterMethod
+    @AfterTest
     public void shutDown() {
-        driver.quit();
+        BrowserFactory.closeAllDriver();
         log.info("Driver shut down");
     }
+
+    @Attachment(type = "image/png")
+    protected byte[] createAttachment() {
+        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+    }
+
+
 
 }
 

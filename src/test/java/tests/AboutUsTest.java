@@ -64,7 +64,6 @@ public class AboutUsTest extends BaseTest {
         log.info("Log step 1: Go to About Us tab");
         oxaHomePage.goToTabAboutAs();
         log.info("Log step 2: Check that page is About As");
-        makeScreenshot();
         Assert.assertEquals("page isn't about us", AboutUsPage.ABOUT_AS_HEADER_TEXT, aboutUsPage.getHeaderText());
 
     }
@@ -84,7 +83,6 @@ public class AboutUsTest extends BaseTest {
         log.info("Log step 2: Go to News");
         oxaHomePage.goToNewsPageFromAboutUsMenu();
         log.info("Log step 3: Check that page is News and get screenshot");
-        makeScreenshot();
         Assert.assertEquals("page isn't news", NewsPage.NEWS_HEADER_TEXT, newsPage.getHeaderText());
     }
 
@@ -103,7 +101,6 @@ public class AboutUsTest extends BaseTest {
 
         log.info("log step 2: Check for " + expected + " validation");
         contactUsPage.sendRequest(name, email, text);
-        makeScreenshot();
         Assert.assertEquals("validation message wasn't found", expected, contactUsPage.getValidationText(name, email, text));
 
     }
@@ -129,7 +126,6 @@ public class AboutUsTest extends BaseTest {
         softwareQualityAssurance.goToContactUs();
 
         log.info("Log step 4: Check that page is Contact Us");
-        makeScreenshot();
         Assert.assertEquals("page isn't contact us", ContactUsPage.CONTACT_US_HEADER_TEXT, contactUsPage.getHeaderText());
     }
 
@@ -148,7 +144,6 @@ public class AboutUsTest extends BaseTest {
         oxaHomePage.tryToSearch(key);
 
         log.info("Log step 2: Check that search works correct");
-        makeScreenshot();
         Assert.assertTrue("search works incorrect", searchResultsPage.checkAllPagesForResults(key));
     }
 
@@ -169,7 +164,6 @@ public class AboutUsTest extends BaseTest {
         aboutUsPage.goToContactUsFromAboutUsPage();
 
         log.info("Log step 3: Check that page is Contact Us");
-        makeScreenshot();
         Assert.assertEquals("page isn't contact us", ContactUsPage.CONTACT_US_HEADER_TEXT, contactUsPage.getHeaderText());
     }
 
@@ -190,7 +184,6 @@ public class AboutUsTest extends BaseTest {
         aboutUsPage.goToCustomerSoftwareServices();
 
         log.info("Log step 3: Check that page is Customer software services page");
-        makeScreenshot();
         Assert.assertEquals("page isn't customer software services", CustomSoftwareDevelopmentServices.CUSTOMER_SOFTWARE_SERVICES_HEADER_TEXT, customSoftwareDevelopmentServices.getHeaderText());
     }
 
@@ -210,7 +203,6 @@ public class AboutUsTest extends BaseTest {
         aboutUsPage.goToWebDevelopmentServices();
 
         log.info("Log step 3: Check that page is Web development services page");
-        makeScreenshot();
         Assert.assertEquals("page isn't web development services", WebDevelopmentServices.WEB_DEVELOPMENT_SERVICES_HEADER_TEXT, webDevelopmentServices.getHeaderText());
     }
 
@@ -231,7 +223,6 @@ public class AboutUsTest extends BaseTest {
         aboutUsPage.goToMobileApplicationDevelopmentServices();
 
         log.info("Log step 3: Check that page is Mobile development services page");
-        makeScreenshot();
         Assert.assertEquals("page isn't web development services", MobileDevelopmentServices.MOBILE_DEVELOPMENT_SERVICED_HEADER_TEXT, mobileDevelopmentServices.getHeaderText());
     }
 
@@ -251,7 +242,6 @@ public class AboutUsTest extends BaseTest {
         aboutUsPage.goToTechnicalSupport();
 
         log.info("Log step 3: Check that page is Technical support page");
-        makeScreenshot();
         Assert.assertEquals("page isn't web development services", TechnicalSupportAndMaintenancePage.TECHNICAL_SUPPORT_HEADER_TEXT, technicalSupportAndMaintenancePage.getHeaderText());
     }
 

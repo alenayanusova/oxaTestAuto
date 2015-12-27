@@ -104,7 +104,7 @@ public class SearchResultsPage extends BasePage {
                     log.info("go to " + (i + 1) + " page");
                     flag = checkSearchResultsForOnePage(key);
                     if (!flag) {
-                        log.info("we have problem on " + i + " page");
+                        log.info("we have problem on " + (i+1) + " page");
                         break;
                     }
                     if (isElementPresent(NEXT_RESULT_PAGE)) {
