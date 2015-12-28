@@ -2,5 +2,4 @@
 target/
 oxaTestAuto.iml
 autoTestOxa.iml
-log4j.properties
 log4j.log

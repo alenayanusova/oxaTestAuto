@@ -98,6 +98,9 @@
                             <value>ru.yandex.qatools.allure.testng.AllureTestListener</value>
                         </property>
                     </properties>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>testLaunchers/aboutUsTestXml.xml</suiteXmlFile>
+                    </suiteXmlFiles>
                 </configuration>
                 <dependencies>
                     <dependency>
