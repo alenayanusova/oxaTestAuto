@@ -77,7 +77,7 @@ public class AboutUsPage extends BasePage {
         log.info("Click 'customerSoftwareServicesLink'");
         ArrayList<String> windowHandles = new ArrayList<String>(driver.getWindowHandles());
         log.info("get window handle'");
-        driver.switchTo().window(windowHandles.get(1));
+        driver.switchTo().window(windowHandles.get(windowHandles.size() - 1));
         log.info("switch window");
     }
 
@@ -87,7 +87,7 @@ public class AboutUsPage extends BasePage {
         log.info("Click 'webDevelopmentServices'");
         ArrayList<String> windowHandles = new ArrayList<String>(driver.getWindowHandles());
         log.info("get window handle'");
-        driver.switchTo().window(windowHandles.get(1));
+        driver.switchTo().window(windowHandles.get(windowHandles.size() - 1));
         log.info("switch window");
     }
 
@@ -97,7 +97,7 @@ public class AboutUsPage extends BasePage {
         log.info("Click 'mobileDevelopmentServices'");
         ArrayList<String> windowHandles = new ArrayList<String>(driver.getWindowHandles());
         log.info("get window handle'");
-        driver.switchTo().window(windowHandles.get(1));
+        driver.switchTo().window(windowHandles.get(windowHandles.size() - 1));
         log.info("switch window");
     }
 
@@ -107,7 +107,7 @@ public class AboutUsPage extends BasePage {
         log.info("Click 'technicalSupport'");
         ArrayList<String> windowHandles = new ArrayList<String>(driver.getWindowHandles());
         log.info("get window handle'");
-        driver.switchTo().window(windowHandles.get(1));
+        driver.switchTo().window(windowHandles.get(windowHandles.size() - 1));
         log.info("switch window");
     }
 }

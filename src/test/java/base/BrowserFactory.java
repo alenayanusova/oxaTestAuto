@@ -35,7 +35,7 @@ public class BrowserFactory {
             driver = drivers.get("IE");
             if (driver == null) {
                 System.setProperty("webdriver.ie.driver",
-                        "\\src\\resources\\drivers\\IEDriverServer.exe");
+                        "./src/resources/drivers/IEDriverServer.exe");
                 driver = new InternetExplorerDriver();
                 drivers.put("IE", driver);
             }
@@ -44,7 +44,7 @@ public class BrowserFactory {
             driver = drivers.get("Chrome");
             if (driver == null) {
                 System.setProperty("webdriver.chrome.driver",
-                        "\\src\\resources\\drivers\\chromedriver.exe");
+                        "./src/resources/drivers/chromedriver.exe");
                 driver = new ChromeDriver();
                 drivers.put("Chrome", driver);
             }
