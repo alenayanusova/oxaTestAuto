@@ -1,6 +1,7 @@
 package tests;
 
 import base.BaseTest;
+import base.listeners.CustomTestListenerAdapter;
 import org.junit.Assert;
 import org.testng.annotations.*;
 import org.openqa.selenium.support.PageFactory;
@@ -16,6 +17,7 @@ import ru.yandex.qatools.allure.model.SeverityLevel;
  * @author yanusovaaa
  */
 
+@Listeners({ CustomTestListenerAdapter.class })
 public class AboutUsTest extends BaseTest {
 
     @DataProvider (name = "requiredFieldsValidation" )

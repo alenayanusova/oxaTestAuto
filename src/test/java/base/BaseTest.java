@@ -4,23 +4,12 @@ import org.apache.log4j.Logger;
 
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.opera.OperaDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.safari.SafariDriver;
 import org.testng.annotations.*;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import pages.*;
 import ru.yandex.qatools.allure.annotations.Attachment;
-import ru.yandex.qatools.allure.annotations.Step;
 
 import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -29,7 +18,7 @@ import java.util.concurrent.TimeUnit;
  */
 
 public abstract class BaseTest {
-    protected WebDriver driver;
+    protected static WebDriver driver;
     protected Logger log = Logger.getLogger(this.getClass().getName());
     protected final String BASE_URL = "http://www.oxagile.com/";
 
@@ -55,9 +44,8 @@ public abstract class BaseTest {
 
     @Parameters(value = "browser")
     @BeforeTest
-    public void setUp(String browser) {
-       // driver = new FirefoxDriver();
-        log.info(browser + " was selected");
+    public void setUp(@Optional("Firefox") String browser) {
+        //log.info(browser + " was selected");
         driver = BrowserFactory.getBrowser(browser);
 
         initPages();
@@ -68,18 +56,15 @@ public abstract class BaseTest {
 
     }
 
+    @Attachment
+    public static byte[] makeScreenshot() {
+        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+    }
+
     @AfterTest
     public void shutDown() {
         BrowserFactory.closeAllDriver();
         log.info("Driver shut down");
     }
-
-    @Attachment(type = "image/png")
-    protected byte[] createAttachment() {
-        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-    }
-
-
-
 }
 
