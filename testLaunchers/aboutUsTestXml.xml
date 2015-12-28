@@ -1,7 +1,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="aboutAsTest">
     <test name="AboutUsTest">
-        <parameter name="browser" value="IE" />
+        <parameter name="browser" value="Firefox" />
         <classes>
             <class name="tests.AboutUsTest" />
         </classes>
