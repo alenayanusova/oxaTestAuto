@@ -53,10 +53,11 @@ public abstract class BaseTest {
 
     public abstract void initPages();
 
-    @Parameters("browser")
+    @Parameters(value = "browser")
     @BeforeTest
     public void setUp(String browser) {
        // driver = new FirefoxDriver();
+        log.info(browser + " was selected");
         driver = BrowserFactory.getBrowser(browser);
 
         initPages();
